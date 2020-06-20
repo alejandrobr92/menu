@@ -2,8 +2,17 @@
     <string name="app_name">Little waiter</string>
 
 
+    <!-- SECOND SPLASH-->
+    <string name="qrCodeHint">¡Hola! \n Escanea el código de tu mesa para comenzar: </string>
+
+
+
+
     <!-- BOTTOM NAVIGATION MENU-->
     <string name="charola">Charola</string>
+    <string name="action_settings">Settings</string>
+
+
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
@@ -94,6 +103,5 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
-    <string name="action_settings">Settings</string>
 
 </resources>

@@ -5,19 +5,20 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 
-class CodeQRActivity : AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
 
     private lateinit var handler : Handler
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_code_qr)
+        setContentView(R.layout.activity_splash)
 
         handler = Handler()
         handler.postDelayed({
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, QRCodeActivity::class.java)
             this.startActivity(intent)
             finish()
         }, 1500)
+
+
     }
 }

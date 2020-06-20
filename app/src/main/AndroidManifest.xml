@@ -9,8 +9,10 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".QRCodeActivity">
+        </activity>
         <activity
-                android:name=".DetailMealTwoActivity"
+                android:name=".SplashActivity"
                 android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -20,13 +22,13 @@
         </activity>
         <activity android:name=".DetailMealActivity">
         </activity>
-        <activity android:name=".Splash">
+        <activity android:name=".ScrollingActivity">
         </activity>
-        <activity android:name=".CodeQRActivity">
+        <activity android:name=".SecondSplashActivity">
         </activity>
         <activity android:name=".MainActivity">
         </activity>
-        <activity android:name=".ScrollingActivity">
+        <activity android:name=".DetailMealTwoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
