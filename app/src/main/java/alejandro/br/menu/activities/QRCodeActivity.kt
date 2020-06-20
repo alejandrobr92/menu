@@ -1,5 +1,6 @@
-package alejandro.br.menu
+package alejandro.br.menu.activities
 
+import alejandro.br.menu.R
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

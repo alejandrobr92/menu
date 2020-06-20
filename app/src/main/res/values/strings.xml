@@ -3,9 +3,7 @@
 
 
     <!-- SECOND SPLASH-->
-    <string name="qrCodeHint">¡Hola! \n Escanea el código de tu mesa para comenzar: </string>
-
-
+    <string name="qrCodeHint">¡Hola! \n Escanea el código de tu mesa para comenzar:</string>
 
 
     <!-- BOTTOM NAVIGATION MENU-->

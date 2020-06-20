@@ -1,23 +1,25 @@
-package alejandro.br.menu
+package alejandro.br.menu.activities
 
+import alejandro.br.menu.R
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 
-class SecondSplashActivity : AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
 
     private lateinit var handler : Handler
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_second_splash)
+        setContentView(R.layout.activity_splash)
 
         handler = Handler()
         handler.postDelayed({
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, QRCodeActivity::class.java)
             this.startActivity(intent)
             finish()
         }, 1500)
+
+
     }
 }

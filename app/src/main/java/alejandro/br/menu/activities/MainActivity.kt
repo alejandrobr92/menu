@@ -1,5 +1,6 @@
-package alejandro.br.menu
+package alejandro.br.menu.activities
 
+import alejandro.br.menu.R
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Ir a configuración", Toast.LENGTH_SHORT).show()
                 return true
             }
-            R.id.my_history->{
+            R.id.my_history ->{
                 Toast.makeText(this,"Ir a mi historial", Toast.LENGTH_SHORT).show()
                 return true
             }

@@ -9,10 +9,12 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".QRCodeActivity">
+        <activity android:name="alejandro.br.menu.activities.SplashActivity">
+        </activity>
+        <activity android:name="alejandro.br.menu.activities.QRCodeActivity">
         </activity>
         <activity
-                android:name=".SplashActivity"
+                android:name="alejandro.br.menu.activities.CategoriesActivity"
                 android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -20,15 +22,15 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".DetailMealActivity">
+        <activity android:name="alejandro.br.menu.activities.DetailMealActivity">
         </activity>
-        <activity android:name=".ScrollingActivity">
+        <activity android:name="alejandro.br.menu.activities.ScrollingActivity">
         </activity>
-        <activity android:name=".SecondSplashActivity">
+        <activity android:name="alejandro.br.menu.activities.SecondSplashActivity">
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name="alejandro.br.menu.activities.MainActivity">
         </activity>
-        <activity android:name=".DetailMealTwoActivity">
+        <activity android:name="alejandro.br.menu.activities.DetailMealTwoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
