@@ -12,4 +12,9 @@
             android:icon="@drawable/abc_vector_test"
             android:title="@string/charola"/>
 
+    <item
+            android:id="@+id/page_3"
+            android:enabled="true"
+            android:icon="@drawable/abc_vector_test"
+            android:title="@string/charola"/>
 </menu>

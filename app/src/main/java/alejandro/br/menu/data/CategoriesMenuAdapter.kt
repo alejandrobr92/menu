@@ -23,7 +23,7 @@ class CategoriesMenuAdapter (private val list: ArrayList<CategoryMenu>,
     }
 
     override fun onBindViewHolder(holder: CategoriesMenuAdapter.ViewHolder, position: Int) {
-        holder!!.bindItem(list[position])
+        holder.bindItem(list[position])
     }
 
     override fun getItemCount(): Int {
