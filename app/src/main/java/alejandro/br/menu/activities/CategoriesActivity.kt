@@ -25,8 +25,8 @@ class CategoriesActivity : AppCompatActivity() {
         adapter = CategoriesMenuAdapter(categoriesList!!,this )
 
 
-        recycler_categories.layoutManager= layoutManager
-        recycler_categories.adapter= adapter
+        recycler_categoriesOld.layoutManager= layoutManager
+        recycler_categoriesOld.adapter= adapter
 
         //data
         categoriesList!!.add(CategoryMenu("Comida"))

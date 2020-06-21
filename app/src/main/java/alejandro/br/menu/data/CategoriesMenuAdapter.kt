@@ -11,7 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.card_categorie.view.*
 
-class CategoriesMenuAdapter (private val list: ArrayList<CategoryMenu>,
+class CategoriesMenuAdapter (private val list: MutableList<CategoryMenu>,
                              private val context: Context): RecyclerView.Adapter<CategoriesMenuAdapter.ViewHolder>() {
 
 
