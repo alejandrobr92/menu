@@ -27,20 +27,20 @@ class MainActivity : AppCompatActivity() {
         bottom_navigation.setOnNavigationItemSelectedListener { item ->
 
             when(item.itemId) {
-                R.id.page_1 -> {
+                R.id.fragmentUn -> {
                     // Respond to navigation item 1 click
                     fragmentSelected = FragmentUn()
                     loadFragment(fragmentSelected)
                     return@setOnNavigationItemSelectedListener true
 
                 }
-                R.id.page_2 -> {
+                R.id.fragmentDeux -> {
                     // Respond to navigation item 2 click
                     fragmentSelected = FragmentDeux()
                     loadFragment(fragmentSelected)
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.page_3 -> {
+                R.id.fragmentTrois -> {
                     // Respond to navigation item 2 click
                     fragmentSelected = FragmentTrois()
                     loadFragment(fragmentSelected)

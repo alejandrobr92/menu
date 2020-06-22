@@ -9,19 +9,6 @@
 
 
 
-
-    <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:title="@string/app_name"
-            app:layout_constraintTop_toTopOf="parent"
-            style="@style/AppTheme.NoActionBar"
-            android:background="@color/colorPrimary">
-
-    </androidx.appcompat.widget.Toolbar>
-
-
     <ImageView
             android:layout_width="0dp"
             android:layout_height="256dp"
@@ -38,7 +25,8 @@
             android:id="@+id/imageView2"
             android:src="@mipmap/ttt"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintTop_toBottomOf="@+id/imageView"/>
 
 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph" app:startDestination="@id/fragmentUn">
+
+    <fragment
+            android:id="@+id/fragmentUn"
+            android:name="alejandro.br.menu.Fragments.FragmentUn"
+            android:label="FragmentUn">
+        <action
+                android:id="@+id/action_fragmentUn_to_fragmentDeux"
+                app:destination="@id/fragmentDeux" />
+        <action
+                android:id="@+id/action_fragmentUn_to_fragmentTrois"
+                app:destination="@id/fragmentTrois" />
+    </fragment>
+    <fragment android:id="@+id/fragmentDeux" android:name="alejandro.br.menu.Fragments.FragmentDeux"
+              android:label="FragmentDeux">
+        <action android:id="@+id/action_fragmentDeux_to_fragmentUn" app:destination="@id/fragmentUn"/>
+        <action android:id="@+id/action_fragmentDeux_to_fragmentTrois" app:destination="@id/fragmentTrois"/>
+    </fragment>
+    <fragment
+            android:id="@+id/fragmentTrois"
+            android:name="alejandro.br.menu.Fragments.FragmentTrois"
+            android:label="FragmentTrois">
+        <action
+                android:id="@+id/action_fragmentTrois_to_fragmentDeux"
+                app:destination="@id/fragmentDeux" />
+        <action
+                android:id="@+id/action_fragmentTrois_to_fragmentUn"
+                app:destination="@id/fragmentUn" />
+    </fragment>
+</navigation>

@@ -8,25 +8,6 @@
         <item name="colorAccent">@color/yellow</item>
     </style>
 
-    <!-- Base application theme  2. -->
-    <style name="AppTheme2" parent="Theme.MaterialComponents.NoActionBar">
-
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/yellow</item>
-    </style>
-
-
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="background">@color/colorPrimary</item>
-    </style>
-
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
-
-
     <!-- QR Code screen style-->
     <style name="qrCode">
         <item name="android:textColor">@color/black</item>

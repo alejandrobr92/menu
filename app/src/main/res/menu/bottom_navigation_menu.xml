@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-            android:id="@+id/page_1"
+            android:id="@+id/fragmentUn"
             android:enabled="true"
             android:icon="@drawable/abc_vector_test"
             android:title="@string/charola"/>
     <item
-            android:id="@+id/page_2"
+            android:id="@+id/fragmentDeux"
             android:enabled="true"
             android:icon="@drawable/abc_vector_test"
             android:title="@string/charola"/>
 
     <item
-            android:id="@+id/page_3"
+            android:id="@+id/fragmentTrois"
             android:enabled="true"
             android:icon="@drawable/abc_vector_test"
             android:title="@string/charola"/>
