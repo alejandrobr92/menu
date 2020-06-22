@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph" app:startDestination="@id/fragmentUn">
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph" app:startDestination="@id/fragmentTrois">
 
     <fragment
             android:id="@+id/fragmentUn"
@@ -22,7 +22,8 @@
     <fragment
             android:id="@+id/fragmentTrois"
             android:name="alejandro.br.menu.Fragments.FragmentTrois"
-            android:label="FragmentTrois">
+            android:label="FragmentTrois"
+            app:startDestination="@id/action_fragmentTrois_to_fragmentUn">
         <action
                 android:id="@+id/action_fragmentTrois_to_fragmentDeux"
                 app:destination="@id/fragmentDeux" />
