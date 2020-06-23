@@ -5,7 +5,6 @@ import alejandro.br.menu.data.CategoriesMenuAdapter
 import alejandro.br.menu.model.CategoryMenu
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_categories.*

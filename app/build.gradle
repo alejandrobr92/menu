@@ -16,6 +16,20 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res',
+                           'src/main/res/layouts/activities_second',
+                           'src/main/res/layouts/fragments'
+            ]
+        }
+    }
+
+
+
+
     buildTypes {
         release {
             minifyEnabled false
@@ -23,6 +37,10 @@ android {
         }
     }
 }
+
+
+
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

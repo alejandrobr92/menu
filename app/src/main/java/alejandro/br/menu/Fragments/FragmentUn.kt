@@ -1,10 +1,8 @@
 package alejandro.br.menu.Fragments
 
 import alejandro.br.menu.R
-import alejandro.br.menu.data.CategoriesMenuAdapter
 import alejandro.br.menu.data.FCategoriesAdapter
 import alejandro.br.menu.model.CategoryMenu
-import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,13 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_categories.*
-import kotlinx.android.synthetic.main.fragment_un.*
 
 class FragmentUn() : Fragment(), FCategoriesAdapter.CategorytItemListener{
 
     private lateinit var adapter : FCategoriesAdapter
     private lateinit var recyclerView: RecyclerView
     //private lateinit var categoriesList : MutableList<CategoryMenu>
+
     private  var categoriesList : List<CategoryMenu> = listOf(CategoryMenu("Comida"),CategoryMenu( "Bebidas"),
             CategoryMenu("Postres"),CategoryMenu( "Veganos"),
             CategoryMenu("Cerveza"),CategoryMenu( "Ensaladas"))
@@ -54,6 +52,7 @@ class FragmentUn() : Fragment(), FCategoriesAdapter.CategorytItemListener{
         adapter= FCategoriesAdapter (categoriesList, this)
         recyclerView.adapter= adapter
     }
+
 
 
 
