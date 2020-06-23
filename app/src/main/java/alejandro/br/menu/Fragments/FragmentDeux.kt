@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_deux.*
 
@@ -21,7 +22,6 @@ class FragmentDeux() : Fragment(){
             val view = inflater.inflate(R.layout.fragment_deux, container, false)
 
         //setContentView(R.layout.activity_main)
-        // intenti fallido
         val sectionsPagerAdapter = context?.let { ViewPagerAdapter(it, childFragmentManager) }
         val viewPager: ViewPager = view.findViewById( R.id.view_pager)
         viewPager.adapter = sectionsPagerAdapter
@@ -37,8 +37,6 @@ class FragmentDeux() : Fragment(){
 
         
     }
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

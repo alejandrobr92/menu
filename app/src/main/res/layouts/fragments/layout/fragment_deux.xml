@@ -11,7 +11,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:background="?attr/colorPrimary">
+            android:background="?attr/colorPrimary"
+            app:tabMode="scrollable"
+            android:backgroundTint="@color/colorPrimaryDark">
 
     </com.google.android.material.tabs.TabLayout>
 
