@@ -20,16 +20,41 @@ class PlaceholderFragmentPages : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         pageViewModel = ViewModelProviders.of(this).get(PageViewModel::class.java).apply {
             setIndex(arguments?.getInt(ARG_SECTION_NUMBER) ?: 1)
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val root = inflater.inflate(R.layout.frag_page_bebidas, container, false)
-        val textView: TextView = root.findViewById(R.id.section_label)
-        pageViewModel.text.observe(this, Observer<String> { textView.text = it })
-        return root
+        lateinit var root: View
+        when (arguments?.getInt(ARG_SECTION_NUMBER)) {
+            1 -> {
+                root = inflater.inflate(R.layout.frag_cat_postres, container, false)
+                val textView: TextView = root.findViewById(R.id.section_label)
+                pageViewModel.text.observe(viewLifecycleOwner, Observer<String> { textView.text = it })
+                return root
+            }
+
+            2 -> {
+                root = inflater.inflate(R.layout.frag_cat_bebidas, container, false)
+                return root
+            }
+
+            3 -> {
+                root = inflater.inflate(R.layout.frag_cat_postres, container, false)
+                val textView: TextView = root.findViewById(R.id.section_label)
+                pageViewModel.text.observe(viewLifecycleOwner, Observer<String> { textView.text = it })
+                return root
+            }
+            4 -> {
+                root = inflater.inflate(R.layout.frag_cat_postres, container, false)
+                val textView: TextView = root.findViewById(R.id.section_label)
+                pageViewModel.text.observe(viewLifecycleOwner, Observer<String> { textView.text = it })
+                return root
+            }
+            else -> return  inflater.inflate(R.layout.frag_cat_postres, container, false)
+        }
     }
 
     companion object {

@@ -7,7 +7,9 @@
 
 
     <!-- BOTTOM NAVIGATION MENU-->
-    <string name="charola">Charola</string>
+    <string name="inicio">Inicio</string>
+    <string name="pedido">Mi pedido</string>
+    <string name="carta">Carta</string>
     <string name="action_settings">Settings</string>
 
     <!-- TABS CATEGORIES-->

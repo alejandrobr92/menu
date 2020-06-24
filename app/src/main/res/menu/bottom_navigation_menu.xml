@@ -4,17 +4,17 @@
     <item
             android:id="@+id/fragmentUn"
             android:enabled="true"
-            android:icon="@drawable/abc_vector_test"
-            android:title="@string/charola"/>
+            android:icon="@drawable/icon_inicio"
+            android:title="@string/inicio"/>
     <item
             android:id="@+id/fragmentDeux"
             android:enabled="true"
-            android:icon="@drawable/abc_vector_test"
-            android:title="@string/charola"/>
+            android:icon="@drawable/icon_menu"
+            android:title="@string/carta"/>
 
     <item
             android:id="@+id/fragmentTrois"
             android:enabled="true"
-            android:icon="@drawable/abc_vector_test"
-            android:title="@string/charola"/>
+            android:icon="@drawable/icon_pedido"
+            android:title="@string/pedido"/>
 </menu>
