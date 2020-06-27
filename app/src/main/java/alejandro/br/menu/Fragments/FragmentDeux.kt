@@ -25,6 +25,7 @@ class FragmentDeux() : Fragment(){
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = view.findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
+        tabs.getTabAt(0)!!.select()
 
 
         return view

@@ -4,6 +4,7 @@ import alejandro.br.menu.Models.MenuViewModel
 import alejandro.br.menu.R
 import alejandro.br.menu.Models.PageViewModel
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -43,13 +44,17 @@ class PlaceholderFragmentPages : Fragment() {
         lateinit var root: View
         when (arguments?.getInt(ARG_SECTION_NUMBER)) {
             1 -> {
+
                 val menu = menuViewModel.getMenuItems()
                 root = inflater.inflate(R.layout.frag_cat_postres, container, false)
+                menuViewModel.menuItems.observe(viewLifecycleOwner, Observer {
                 recyclerView = root.findViewById(R.id.recycler_cat_postres)
                 recyclerView.layoutManager= LinearLayoutManager(context)
                 adapter= MenuItemAdapter(menu)
                 recyclerView.adapter= adapter
+                 })
                 return root
+
             }
 
             2 -> {
