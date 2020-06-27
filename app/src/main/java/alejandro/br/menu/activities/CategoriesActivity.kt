@@ -1,8 +1,8 @@
 package alejandro.br.menu.activities
 
 import alejandro.br.menu.R
-import alejandro.br.menu.data.CategoriesMenuAdapter
-import alejandro.br.menu.model.CategoryMenu
+import alejandro.br.menu.Adapters.CategoriesMenuAdapter
+import alejandro.br.menu.Models.CategoryMenu
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_categories.*
 
 class CategoriesActivity : AppCompatActivity() {
 
-    private var adapter : CategoriesMenuAdapter? = null
+    private lateinit var adapter : CategoriesMenuAdapter
     private var categoriesList : ArrayList<CategoryMenu>? = null
     private var layoutManager: RecyclerView.LayoutManager? = null
 
@@ -21,7 +21,10 @@ class CategoriesActivity : AppCompatActivity() {
 
         categoriesList = ArrayList<CategoryMenu>()
         layoutManager =  LinearLayoutManager(this)
-        adapter = CategoriesMenuAdapter(categoriesList!!,this )
+        adapter = CategoriesMenuAdapter(
+            categoriesList!!,
+            this
+        )
 
 
         recycler_categoriesOld.layoutManager= layoutManager

@@ -1,15 +1,12 @@
-package alejandro.br.menu.data
+package alejandro.br.menu.Adapters
 
 import alejandro.br.menu.R
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.viewpager2.adapter.FragmentStateAdapter
-import java.lang.reflect.Array.newInstance
 
-private val TAB_TITLES = arrayOf(R.string.tab_cat_un, R.string.tab_cat_deux, R.string.tab_cat_trois, R.string.tab_cat_quatre)
+private val TAB_TITLES = arrayOf(R.string.tab_cat_un, R.string.tab_cat_deux,   R.string.tab_cat_trois,R.string.tab_cat_quatre)
 
 
 class ViewPagerAdapter (private val context : Context, fm : FragmentManager) :  FragmentPagerAdapter(fm) {

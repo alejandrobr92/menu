@@ -1,8 +1,10 @@
 package alejandro.br.menu.activities
 
+import alejandro.br.menu.Models.Repository
 import alejandro.br.menu.R
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -13,6 +15,7 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_main2.*
 
 class MainActivity2 : AppCompatActivity() {
@@ -28,6 +31,16 @@ class MainActivity2 : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         findViewById<BottomNavigationView>(R.id.bottom_navigation)
             .setupWithNavController(navController)
+
+        // Obtiene el menu
+        // desde Firebase
+        var repository = Repository()
+        repository.getMenu(object:Repository.MenuListCallback{
+            override fun onCallback(menu: List<alejandro.br.menu.Models.MenuItem>) {
+                Log.e("MENU FROM FIREBASE" , menu.toString())
+            }
+        })
+
     }
 
 

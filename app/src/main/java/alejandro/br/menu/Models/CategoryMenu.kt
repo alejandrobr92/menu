@@ -1,4 +1,4 @@
-package alejandro.br.menu.model
+package alejandro.br.menu.Models
 
 class CategoryMenu(var name: String ) {
 }

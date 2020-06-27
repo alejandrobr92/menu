@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "88982717292",
+    "firebase_url": "https://littlewaiter.firebaseio.com",
+    "project_id": "littlewaiter",
+    "storage_bucket": "littlewaiter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:88982717292:android:8358c9bff81f2399d4a949",
+        "android_client_info": {
+          "package_name": "alejandro.br.menu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "88982717292-9hfmrdu0okf6n5mi69d0dfuh4d9767pu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "alejandro.br.menu",
+            "certificate_hash": "30219d790a7b1a8a257d8539b10b90b3da06bd14"
+          }
+        },
+        {
+          "client_id": "88982717292-n770hgrjrverlhvkse48vuns67gbk902.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKaiuKqh77arptjCV1Ad-7B2_XnRd1yXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "88982717292-n770hgrjrverlhvkse48vuns67gbk902.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
