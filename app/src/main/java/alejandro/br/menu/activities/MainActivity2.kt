@@ -2,23 +2,17 @@ package alejandro.br.menu.activities
 
 import alejandro.br.menu.Models.Repository
 import alejandro.br.menu.R
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_main2.*
-import kotlinx.android.synthetic.main.activity_main2.bottom_navigation
-import kotlinx.android.synthetic.main.bottom_navigation.*
 
 class MainActivity2 : AppCompatActivity() {
 
@@ -42,7 +36,6 @@ class MainActivity2 : AppCompatActivity() {
             }
         }
 
-
         // Obtiene el menu
         // desde Firebase
         var repository = Repository()
@@ -57,8 +50,6 @@ class MainActivity2 : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController, null)
-        //findNavController(R.id.nav_host_fragment).navigateUp()
-        // return super.onSupportNavigateUp()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

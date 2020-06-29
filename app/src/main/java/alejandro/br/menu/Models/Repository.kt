@@ -11,7 +11,6 @@ class Repository(){
 
     val TAG =  "FIREBASE_REPOSITORY"
     var database = FirebaseDatabase.getInstance().reference
-    //var menuItems : MutableLiveData<List<MenuItem>> = MutableLiveData()
     var menuItems : MutableList<MenuItem> = mutableListOf()
 
 
@@ -30,12 +29,9 @@ class Repository(){
             override fun onCancelled(databaseError: DatabaseError) {
                 // Getting Post failed, log a message
                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
-                // ...
             }
         }
         database.child("Carta").addListenerForSingleValueEvent(menuItemListener)
-
-
     }
 
     // Callback para esperar los resultados de Firebases

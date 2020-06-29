@@ -9,8 +9,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
-class FCategoriesAdapter (private val list: List<CategoryMenu>,
-                          private val categoryListener : CategorytItemListener) : RecyclerView.Adapter<FCategoriesAdapter.ViewHolder>() {
+class FCategoriesAdapter (private val list: List<CategoryMenu>, private val categoryListener : CategorytItemListener) : RecyclerView.Adapter<FCategoriesAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,14 +26,12 @@ class FCategoriesAdapter (private val list: List<CategoryMenu>,
         val category = list[position]
         with(holder){
             cardView.tag = category
-            //cardView.setOnClickListener()
             name.text= category.name
         }
 
     }
 
     interface CategorytItemListener {
-
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

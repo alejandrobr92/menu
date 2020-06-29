@@ -1,9 +1,7 @@
 package alejandro.br.menu.Models
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import alejandro.br.menu.Models.Repository
 import androidx.lifecycle.ViewModel
 
 class MenuViewModel : ViewModel() {
@@ -11,7 +9,7 @@ class MenuViewModel : ViewModel() {
     val TAG = "MENU_VIEW_MODEL"
     var menuItems : MutableLiveData<List<MenuItem>> = MutableLiveData()
     var pedidoItems : MutableLiveData<MutableMap<String, Int>> = MutableLiveData()
-    val repository = Repository()
+    private val repository = Repository()
 
     init {
         Log.e("MenuViewModel", "MenuViewModel created!")
@@ -21,22 +19,14 @@ class MenuViewModel : ViewModel() {
 
     // Obtiene el menu
     // desde Firebase
-    fun getMenuItems() { //: LiveData<List<MenuItem>> {
+    private fun getMenuItems() {
 
         repository.getMenu(object:Repository.MenuListCallback{
             // Se crea el LiveData cuando el menu está listo
-            override fun onCallback(menu: List<alejandro.br.menu.Models.MenuItem>) {
+            override fun onCallback(menu: List<MenuItem>) {
                 Log.e("MENU FROM FIREBASE2" , menu.toString())
                 menuItems.value = menu
             }
         })
     }
-
-  /*  fun getPedidoItems() { //: LiveData<MutableMap<String,Int>>{
-
-        pedidoItems.value = mutableMapOf<String, Int>()
-      //  return pedidoItems
-    }
-
-   */
 }
