@@ -34,20 +34,6 @@ class FragmentUn() : Fragment(), FCategoriesAdapter.CategorytItemListener{
 
 
 
-
-        //data
-
-      /*  categoriesList.add(CategoryMenu("Comida"))
-        categoriesList.add(CategoryMenu("Bebidas"))
-        categoriesList.add(CategoryMenu("Ensaladas"))
-        categoriesList.add(CategoryMenu("Postres"))
-        categoriesList.add(CategoryMenu("Veganos"))
-        categoriesList.add(CategoryMenu("Tradicionales"))
-        categoriesList.add(CategoryMenu("Cerveza"))
-        categoriesList.add(CategoryMenu("Licores"))
-        categoriesList.add(CategoryMenu("Snacks"))
-*/
-
         return view
     }
 
@@ -55,6 +41,7 @@ class FragmentUn() : Fragment(), FCategoriesAdapter.CategorytItemListener{
         super.onViewCreated(view, savedInstanceState)
         adapter= FCategoriesAdapter(categoriesList, this)
         recyclerView.adapter= adapter
+
     }
 
 

@@ -17,6 +17,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_main2.*
+import kotlinx.android.synthetic.main.activity_main2.bottom_navigation
+import kotlinx.android.synthetic.main.bottom_navigation.*
 
 class MainActivity2 : AppCompatActivity() {
 
@@ -29,8 +31,17 @@ class MainActivity2 : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         val navController = findNavController(R.id.nav_host_fragment)
-        findViewById<BottomNavigationView>(R.id.bottom_navigation)
-            .setupWithNavController(navController)
+        bottom_navigation.setupWithNavController(navController)
+
+        // Disable buttons when selected
+        bottom_navigation.setOnNavigationItemReselectedListener { item ->
+            when(item.itemId) {
+                R.id.fragmentUn-> { false }
+                R.id.fragmentDeux -> { false }
+                R.id.fragmentTrois -> { false }
+            }
+        }
+
 
         // Obtiene el menu
         // desde Firebase
