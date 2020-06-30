@@ -1,5 +1,7 @@
 package alejandro.br.menu.activities
 
+import alejandro.br.menu.Models.MenuViewModel
+import alejandro.br.menu.Models.PageViewModel
 import alejandro.br.menu.Models.Repository
 import alejandro.br.menu.R
 import android.os.Bundle
@@ -8,24 +10,41 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.badge.BadgeDrawable
 import kotlinx.android.synthetic.main.activity_main2.*
+import kotlinx.android.synthetic.main.activity_main2.bottom_navigation
+import kotlinx.android.synthetic.main.bottom_navigation.*
 
 class MainActivity2 : AppCompatActivity() {
 
     private lateinit var navController : NavController
+    private lateinit var menuViewModel  : MenuViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
 
+        menuViewModel= ViewModelProviders.of(this).get(MenuViewModel::class.java)
+
+        menuViewModel.pedidoItems.observe(this, Observer {
+            val badge: BadgeDrawable = bottom_navigation.getOrCreateBadge(
+                R.id.fragmentTrois)
+            badge.isVisible = true
+        } )
+
         setSupportActionBar(toolbar)
 
         val navController = findNavController(R.id.nav_host_fragment)
         bottom_navigation.setupWithNavController(navController)
+
 
         // Disable buttons when selected
         bottom_navigation.setOnNavigationItemReselectedListener { item ->
@@ -71,6 +90,7 @@ class MainActivity2 : AppCompatActivity() {
             else -> return super.onOptionsItemSelected(item)
         }
     }
+
 
 
 }

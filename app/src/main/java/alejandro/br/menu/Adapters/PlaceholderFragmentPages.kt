@@ -1,8 +1,10 @@
 package alejandro.br.menu.Adapters
 
+import alejandro.br.menu.Models.MenuItem
 import alejandro.br.menu.Models.MenuViewModel
 import alejandro.br.menu.R
 import alejandro.br.menu.Models.PageViewModel
+import alejandro.br.menu.Models.PedidoItem
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,6 +17,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.badge.BadgeDrawable
+import kotlinx.android.synthetic.main.activity_main2.*
 
 
 /**
@@ -25,7 +29,6 @@ class PlaceholderFragmentPages : Fragment(), View.OnClickListener {
     private lateinit var pageViewModel: PageViewModel
     private lateinit var adapter : MenuItemAdapter
     private lateinit var recyclerView: RecyclerView
-//    private lateinit var menuViewModel  : MenuViewModel
 
     private val menuViewModel: MenuViewModel by activityViewModels()
 
@@ -37,38 +40,32 @@ class PlaceholderFragmentPages : Fragment(), View.OnClickListener {
         }
     }
 
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         lateinit var root: View
 
         when (arguments?.getInt(ARG_SECTION_NUMBER)) {
             1 -> {
                 root = inflater.inflate(R.layout.frag_category, container, false)
-                menuViewModel.menuItems.observe(viewLifecycleOwner, Observer {
-
-                   var menuFiltered = it.filter { it.category.equals("bebidas") }
-                    recyclerView = root.findViewById(R.id.recycler_cat_postres)
-                    recyclerView.layoutManager= LinearLayoutManager(context)
-                    adapter= MenuItemAdapter(menuFiltered, this)
-                    recyclerView.adapter= adapter
-                 })
-
+                fillCategory(root, getString(R.string.tab_cat_un))
                 return root
             }
-
             2 -> {
                 root = inflater.inflate(R.layout.frag_category, container, false)
+                fillCategory(root,  getString(R.string.tab_cat_deux))
                 return root
             }
-
             3 -> {
                 root = inflater.inflate(R.layout.frag_category, container, false)
+                fillCategory(root, getString(R.string.tab_cat_trois))
                 return root
             }
             4 -> {
                root = inflater.inflate(R.layout.frag_category, container, false)
+                fillCategory(root, getString(R.string.tab_cat_quatre))
                 return root
             }
-
             else -> return  inflater.inflate(R.layout.frag_category, container, false)
         }
     }
@@ -90,11 +87,41 @@ class PlaceholderFragmentPages : Fragment(), View.OnClickListener {
         }
     }
 
-    override fun onClick(view: View) {
-        view.findViewById<CardView>(R.id.menu_item_card)?.setOnClickListener{
-            menuViewModel.pedidoItems.value!!.put(view.findViewById<TextView>(R.id.menu_item_name).text.toString(), 2)
-            Log.e("PEDIDO",menuViewModel.pedidoItems.value.toString())
-        }
-
+    // Logic for filling the RecyvlerView for each category
+    fun fillCategory(root: View, category: String){
+        menuViewModel.menuItems.observe(viewLifecycleOwner, Observer {
+            var menuFiltered = it.filter { it.category.equals(category) }
+            recyclerView = root.findViewById(R.id.recycler_category)
+            recyclerView.layoutManager= LinearLayoutManager(context)
+            adapter= MenuItemAdapter(menuFiltered, this)
+            recyclerView.adapter= adapter
+        })
     }
+
+
+    // Listener to add item to pedido
+    override fun onClick(view: View) {
+            val name = view.findViewById<TextView>(R.id.menu_item_name).text.toString()
+            val price = view.findViewById<TextView>(R.id.menu_item_price).text.toString().toDouble()
+            var pedidoItem = MenuItem(name, price)
+
+            if(!menuViewModel.pedidoItems.value!!.isEmpty()){
+
+                if (!menuViewModel.pedidoItems.value!!.contains(pedidoItem)) {
+                    menuViewModel.pedidoItems.value!!.put(pedidoItem, 1)
+                }
+                else  {
+                    var oldValue = menuViewModel.pedidoItems.value!!.get(pedidoItem)!!
+                    menuViewModel.pedidoItems.value!!.put(pedidoItem, oldValue+1)
+                    Log.e("PEDIDO", menuViewModel.pedidoItems.value.toString())
+                }
+            }
+            else{
+                menuViewModel.pedidoItems.value!!.put(pedidoItem, 1)
+
+            }
+        Log.e("PedidoItems", menuViewModel.pedidoItems.value.toString())
+    }
+
+
 }

@@ -8,7 +8,7 @@ class MenuViewModel : ViewModel() {
 
     val TAG = "MENU_VIEW_MODEL"
     var menuItems : MutableLiveData<List<MenuItem>> = MutableLiveData()
-    var pedidoItems : MutableLiveData<MutableMap<String, Int>> = MutableLiveData()
+    var pedidoItems : MutableLiveData<MutableMap<MenuItem, Int>> = MutableLiveData()
     private val repository = Repository()
 
     init {
