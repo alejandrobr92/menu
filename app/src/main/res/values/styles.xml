@@ -8,12 +8,12 @@
         <item name="colorAccent">@color/yellow</item>
     </style>
 
-    <!-- QR Code screen style-->
-    <style name="qrCode">
-        <item name="android:textColor">@color/black</item>
-        <item name="android:fontFamily">@font/indieflower_regular</item>
-        <item name="android:textSize">40dp</item>
+    <!-- Recycler Pedidos -->
+    <style name="pedido_item">
+        <item name="android:textSize">15sp</item>
+        <item name="background">@color/cardview_light_background</item>
     </style>
+
 
     <!-- Categories screen style-->
     <style name="card_categories">
@@ -26,6 +26,13 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+
+    <!-- QR Code screen style-->
+    <style name="qrCode">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/indieflower_regular</item>
+        <item name="android:textSize">40dp</item>
+    </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

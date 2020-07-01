@@ -10,7 +10,8 @@
     <androidx.cardview.widget.CardView
             android:id="@+id/pedido_card"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -21,26 +22,57 @@
 
             <TextView
                     android:id="@+id/pedido_name"
+                    style="@style/pedido_item"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"></TextView>
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="20dp">
+
+            </TextView>
+
+            <TextView
+                    android:id="@+id/pedido_price"
+                    style="@style/pedido_item"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/pedido_name"
+                    android:layout_toLeftOf="@id/pedido_quantity"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp">
+
+            </TextView>
 
             <TextView
                     android:id="@+id/pedido_quantity"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/pedido_name"
-                    android:layout_alignLeft="@+id/pedido_amount"></TextView>
-
-            <TextView
-                    android:id="@+id/pedido_amount"
-                    android:layout_width="wrap_content"
+                    style="@style/pedido_item"
+                    android:layout_width="41dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/pedido_name"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true">
+                    android:layout_toLeftOf="@+id/pedido_total_parcial"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="8dp">
 
             </TextView>
+
+            <TextView
+                android:id="@+id/pedido_total_parcial"
+                style="@style/pedido_item"
+                android:layout_width="41dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pedido_name"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="62dp">
+
+        </TextView>
+
 
 
         </RelativeLayout>

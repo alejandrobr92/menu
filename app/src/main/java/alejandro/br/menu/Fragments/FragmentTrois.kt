@@ -68,6 +68,5 @@ class FragmentTrois : Fragment(), View.OnClickListener{
     }
 
     override fun onClick(p0: View?) {
-        TODO("Not yet implemented")
     }
 }

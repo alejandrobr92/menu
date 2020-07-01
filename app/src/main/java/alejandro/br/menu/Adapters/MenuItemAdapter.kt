@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MenuItemAdapter (private val menu : List<MenuItem>, val itemClickListener: View.OnClickListener) : RecyclerView.Adapter<MenuItemAdapter.ViewHolder>(){
 
@@ -30,7 +31,7 @@ class MenuItemAdapter (private val menu : List<MenuItem>, val itemClickListener:
             val cardView = itemView.findViewById<CardView>(R.id.menu_item_card)
             var name: TextView = itemView.findViewById<TextView>(R.id.menu_item_name)
             var price: TextView = itemView.findViewById<TextView>(R.id.menu_item_price)
-
+            val boton = itemView.findViewById<FloatingActionButton>(R.id.addItemToPedido)
             name.text= menuItem.name
             price.text = menuItem.price.toString()
             cardView.setOnClickListener(itemClickListener)
