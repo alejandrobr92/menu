@@ -38,7 +38,7 @@ class PedidoAdapter (private val pedido : List<PedidoItem>, val itemClickListene
 
             name.text = pedidoItem.name
             price.text = pedidoItem.price.toString()
-            quantity.text = "X "+pedidoItem.quantity.toString()
+            quantity.text = "x "+pedidoItem.quantity.toString()
             totalParcial.text = (pedidoItem.price * pedidoItem.quantity).toString()
             cardView.setOnClickListener(itemClickListener)
 

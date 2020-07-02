@@ -5,6 +5,9 @@ import alejandro.br.menu.Models.MenuViewModel
 import alejandro.br.menu.R
 import alejandro.br.menu.Models.PageViewModel
 import alejandro.br.menu.Models.PedidoItem
+import alejandro.br.menu.activities.DetailMealTwoActivity
+import alejandro.br.menu.activities.QRCodeActivity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -40,11 +43,8 @@ class PlaceholderFragmentPages : Fragment(), View.OnClickListener {
         }
     }
 
-
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         lateinit var root: View
-
         when (arguments?.getInt(ARG_SECTION_NUMBER)) {
             1 -> {
                 root = inflater.inflate(R.layout.frag_category, container, false)
@@ -99,10 +99,13 @@ class PlaceholderFragmentPages : Fragment(), View.OnClickListener {
     }
 
 
+
     // Listener to add item to pedido
-    override fun onClick(view: View) {
-            val name = view.findViewById<TextView>(R.id.menu_item_name).text.toString()
-            val price = view.findViewById<TextView>(R.id.menu_item_price).text.toString().toDouble()
+   override fun onClick(view: View) {
+
+            Log.e("Position: ", view.tag.toString())
+            val name= menuViewModel.menuItems.value!!.get(view.tag as Int).name
+            val price= menuViewModel.menuItems.value!!.get(view.tag as Int).price
             var pedidoItem = MenuItem(name, price)
 
             if(!menuViewModel.pedidoItems.value!!.isEmpty()){
@@ -121,7 +124,7 @@ class PlaceholderFragmentPages : Fragment(), View.OnClickListener {
 
             }
         Log.e("PedidoItems", menuViewModel.pedidoItems.value.toString())
-    }
 
+    }
 
 }
