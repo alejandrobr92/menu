@@ -19,18 +19,18 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.badge.BadgeDrawable
-import kotlinx.android.synthetic.main.activity_main2.*
-import kotlinx.android.synthetic.main.activity_main2.bottom_navigation
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.bottom_navigation
 import kotlinx.android.synthetic.main.bottom_navigation.*
 
-class MainActivity2 : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var navController : NavController
     private lateinit var menuViewModel  : MenuViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main2)
+        setContentView(R.layout.activity_main)
 
         menuViewModel= ViewModelProviders.of(this).get(MenuViewModel::class.java)
 

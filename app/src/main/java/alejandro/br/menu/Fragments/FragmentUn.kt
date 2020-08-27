@@ -32,8 +32,6 @@ class FragmentUn() : Fragment(), FCategoriesAdapter.CategorytItemListener{
         recyclerView = view.findViewById(R.id.recycler_categories_new)
         recyclerView.layoutManager= LinearLayoutManager(context)
 
-
-
         return view
     }
 
@@ -43,10 +41,6 @@ class FragmentUn() : Fragment(), FCategoriesAdapter.CategorytItemListener{
         recyclerView.adapter= adapter
 
     }
-
-
-
-
 
 
 }

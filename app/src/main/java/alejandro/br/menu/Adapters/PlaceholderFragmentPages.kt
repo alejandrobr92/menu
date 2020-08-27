@@ -4,24 +4,16 @@ import alejandro.br.menu.Models.MenuItem
 import alejandro.br.menu.Models.MenuViewModel
 import alejandro.br.menu.R
 import alejandro.br.menu.Models.PageViewModel
-import alejandro.br.menu.Models.PedidoItem
-import alejandro.br.menu.activities.DetailMealTwoActivity
-import alejandro.br.menu.activities.QRCodeActivity
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.badge.BadgeDrawable
-import kotlinx.android.synthetic.main.activity_main2.*
 
 
 /**
