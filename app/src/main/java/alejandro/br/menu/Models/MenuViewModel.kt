@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 class MenuViewModel : ViewModel() {
 
     val TAG = "MENU_VIEW_MODEL"
-    var idRest = "ORoDlpiidmmId2F60boJ"
+    var idRest = ""
     var menuItems : MutableLiveData<List<MenuItem>> = MutableLiveData()
     var pedidoItems : MutableLiveData<MutableMap<MenuItem, Int>> = MutableLiveData()
     private val repository = Repository()
@@ -15,8 +15,13 @@ class MenuViewModel : ViewModel() {
     init {
         Log.e("MenuViewModel", "MenuViewModel created with idRest= $idRest")
         pedidoItems.value = mutableMapOf()
-        getMenuItems(idRest)
 }
+
+
+
+    fun initMenuViewModel(){
+        getMenuItems(idRest)
+    }
 
     // Obtiene el menu
     // desde Firebase

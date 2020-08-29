@@ -17,10 +17,7 @@ import kotlinx.android.synthetic.main.activity_select_rest.*
 class SplashActivity : AppCompatActivity() {
 
     val TAG =  "LOADING_FROM_SPLAH"
-  //  private var restaurantList: MutableList<Restaurant> = mutableListOf()
-    var firestore = FirebaseFirestore.getInstance()
     private lateinit var handler : Handler
-    private val restaurantViewModel: RestaurantViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

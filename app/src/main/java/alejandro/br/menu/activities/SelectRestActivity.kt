@@ -23,11 +23,7 @@ import kotlinx.android.synthetic.main.activity_select_rest.*
 
 class SelectRestActivity : AppCompatActivity() {
 
-    val TAG =  "FIREBASE_REPOSITORY"
     private lateinit var adapter: RestaurantAdapter
-    private var restaurantList: MutableList<Restaurant> = mutableListOf()
-   // private val restaurantViewModel: RestaurantViewModel by viewModels()
-    var firestore = FirebaseFirestore.getInstance()
     val repository = Repository()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,8 +34,6 @@ class SelectRestActivity : AppCompatActivity() {
 
         repository.getRestaurants(object:Repository.RestaurantsCallback{
             override fun onCallback(restaurants: List<Restaurant>) {
-                Log.e("Rest FROM FIREBASE" , restaurants.toString())
-
                 adapter = RestaurantAdapter(restaurants)
                 recycler_restaurant.adapter = adapter
             }

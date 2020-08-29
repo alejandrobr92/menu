@@ -2,16 +2,13 @@ package alejandro.br.menu.Adapters
 
 import alejandro.br.menu.Models.Restaurant
 import alejandro.br.menu.R
-import alejandro.br.menu.activities.DetailMealTwoActivity
 import alejandro.br.menu.activities.MainActivity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
@@ -20,7 +17,7 @@ class RestaurantAdapter (private val list: List<Restaurant>) : RecyclerView.Adap
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val viewItem = LayoutInflater.from(parent.context)
-            .inflate(R.layout.card_restaurant2, parent, false)
+            .inflate(R.layout.card_restaurant, parent, false)
         return ViewHolder(viewItem)
     }
 
@@ -33,7 +30,7 @@ class RestaurantAdapter (private val list: List<Restaurant>) : RecyclerView.Adap
             cardView.tag = restaurant.id
             //name.text= restaurant.name
           //  desc.text= restaurant.desc
-            Picasso.get().load(restaurant.photo).into(logo);
+            Picasso.get().load(restaurant.photo).into(logo)
             cardView.setOnClickListener {
                 val intent = Intent(itemView.context   , MainActivity::class.java)
                 intent.putExtra("idRest",restaurant.id)

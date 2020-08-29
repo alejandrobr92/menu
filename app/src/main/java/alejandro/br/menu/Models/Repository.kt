@@ -19,12 +19,13 @@ class Repository(){
 
 
     fun getRestaurants(callback: RestaurantsCallback) {
+
         firestore.collection("Restaurantes")
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
                     Log.e(TAG, "${document.id} => ${document.data}")
-                    restaurants.add(Restaurant(document.id.toString(),document["name"].toString(), document["photo"].toString(), document["description"].toString()))
+                    restaurants.add(Restaurant(document.id,document["name"].toString(), document["photo"].toString(), document["description"].toString()))
                 }
                 callback.onCallback(restaurants)
             }
@@ -35,8 +36,24 @@ class Repository(){
 
 
     fun getMenu(callback: MenuListCallback, idRest: String ) {
-        Log.e("Repo:", idRest)
+
         firestore.collection("Restaurantes/$idRest/menu")
+            .addSnapshotListener { snapshot, e ->
+                if (e != null) {
+                    Log.w(TAG, "Listen failed.", e)
+                    return@addSnapshotListener
+                }
+                menuItems.clear()
+                for (document in snapshot!!) {
+                    Log.e(TAG, "${document.id} => ${document.data}")
+                    menuItems.add(document.toObject(MenuItem::class.java))
+                }
+                callback.onCallback(menuItems)
+            }
+
+
+
+    /*    firestore.collection("Restaurantes/$idRest/menu")
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
@@ -50,6 +67,8 @@ class Repository(){
             .addOnFailureListener { exception ->
                 Log.e(TAG, "Error getting documents: ", exception)
             }
+
+     */
     }
 
 
