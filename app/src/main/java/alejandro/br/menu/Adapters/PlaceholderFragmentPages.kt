@@ -55,7 +55,7 @@ class PlaceholderFragmentPages : Fragment(), View.OnClickListener {
             }
             4 -> {
                root = inflater.inflate(R.layout.frag_category, container, false)
-                fillCategory(root, getString(R.string.tab_cat_quatre))
+                fillCategory(root,getString(R.string.tab_cat_quatre))
                 return root
             }
             else -> return  inflater.inflate(R.layout.frag_category, container, false)

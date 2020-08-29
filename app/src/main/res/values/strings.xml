@@ -13,10 +13,10 @@
     <string name="action_settings">Settings</string>
 
     <!-- TABS CATEGORIES-->
-    <string name="tab_cat_un">Comida</string>
-    <string name="tab_cat_deux">Bebidas</string>
-    <string name="tab_cat_trois">Postres</string>
-    <string name="tab_cat_quatre">Ensaladas</string>
+    <string name="tab_cat_un">food</string>
+    <string name="tab_cat_deux">drinks</string>
+    <string name="tab_cat_trois">desserts</string>
+    <string name="tab_cat_quatre">salads</string>
 
 
     <string name="detalles">Esta cerveza originaria de Bélgica ofrece numerosos sabores y con distintas graduaciones de alcohol, lo

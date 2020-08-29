@@ -26,30 +26,24 @@ class SelectRestActivity : AppCompatActivity() {
     val TAG =  "FIREBASE_REPOSITORY"
     private lateinit var adapter: RestaurantAdapter
     private var restaurantList: MutableList<Restaurant> = mutableListOf()
-    private val restaurantViewModel: RestaurantViewModel by viewModels()
+   // private val restaurantViewModel: RestaurantViewModel by viewModels()
     var firestore = FirebaseFirestore.getInstance()
+    val repository = Repository()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_rest)
 
+        recycler_restaurant.layoutManager = LinearLayoutManager(this)
 
-       firestore.collection("Restaurantes")
-            .get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    Log.e(TAG, "${document.id} => ${document.data}")
-                    restaurantList.add(Restaurant(document.id, document["name"].toString(), document["photo"].toString(), document["description"].toString()))
-                }
-                recycler_restaurant.layoutManager = LinearLayoutManager(this)
-                adapter = RestaurantAdapter(restaurantList)
+        repository.getRestaurants(object:Repository.RestaurantsCallback{
+            override fun onCallback(restaurants: List<Restaurant>) {
+                Log.e("Rest FROM FIREBASE" , restaurants.toString())
+
+                adapter = RestaurantAdapter(restaurants)
                 recycler_restaurant.adapter = adapter
             }
-            .addOnFailureListener { exception ->
-                Log.w(TAG, "Error getting documents: ", exception)
-            }
-
-
+        })
 
     }
 }

@@ -33,6 +33,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         menuViewModel= ViewModelProviders.of(this).get(MenuViewModel::class.java)
+        menuViewModel.idRest= intent.getStringExtra("idRest")
+        Log.e("MainAc", menuViewModel.idRest)
 
         menuViewModel.pedidoItems.observe(this, Observer {
             val badge: BadgeDrawable = bottom_navigation.getOrCreateBadge(
@@ -57,12 +59,12 @@ class MainActivity : AppCompatActivity() {
 
         // Obtiene el menu
         // desde Firebase
-        var repository = Repository()
+   /*     var repository = Repository()
         repository.getMenu(object:Repository.MenuListCallback{
             override fun onCallback(menu: List<alejandro.br.menu.Models.MenuItem>) {
                 Log.e("MENU FROM FIREBASE" , menu.toString())
             }
-        })
+        }, "null" )*/
 
     }
 

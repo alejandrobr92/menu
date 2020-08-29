@@ -32,11 +32,11 @@ class RestaurantAdapter (private val list: List<Restaurant>) : RecyclerView.Adap
         with(holder){
             cardView.tag = restaurant.id
             //name.text= restaurant.name
-            desc.text= restaurant.desc
-            Picasso.get().load(restaurant.photo).resize(400, 300).centerCrop().into(logo);
+          //  desc.text= restaurant.desc
+            Picasso.get().load(restaurant.photo).into(logo);
             cardView.setOnClickListener {
                 val intent = Intent(itemView.context   , MainActivity::class.java)
-                intent.putExtra("id",restaurant.id)
+                intent.putExtra("idRest",restaurant.id)
                 itemView.context.startActivity(intent)
             }
         }
@@ -48,7 +48,7 @@ class RestaurantAdapter (private val list: List<Restaurant>) : RecyclerView.Adap
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val cardView = itemView.findViewById<CardView>(R.id.card_rest)
        // val name: TextView = itemView.findViewById<TextView>(R.id.name__rest)
-        val desc: TextView = itemView.findViewById(R.id.desc_rest)
+       // val desc: TextView = itemView.findViewById(R.id.desc_rest)
         val logo: ImageView= itemView.findViewById(R.id.logo_rest)
 
     }

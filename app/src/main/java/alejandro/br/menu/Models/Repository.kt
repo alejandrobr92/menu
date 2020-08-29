@@ -18,8 +18,7 @@ class Repository(){
     private var restaurants : MutableList<Restaurant> = mutableListOf()
 
 
-    fun getRestaurants() :  MutableList<Restaurant> {
-        Log.e("Repository", "getRest executed")
+    fun getRestaurants(callback: RestaurantsCallback) {
         firestore.collection("Restaurantes")
             .get()
             .addOnSuccessListener { result ->
@@ -27,35 +26,47 @@ class Repository(){
                     Log.e(TAG, "${document.id} => ${document.data}")
                     restaurants.add(Restaurant(document.id.toString(),document["name"].toString(), document["photo"].toString(), document["description"].toString()))
                 }
+                callback.onCallback(restaurants)
             }
             .addOnFailureListener { exception ->
                 Log.d(TAG, "Error getting documents: ", exception)
             }
-        return restaurants
     }
 
 
-    fun getMenu(callback: MenuListCallback) {
-
-        val menuItemListener = object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                menuItems.clear()
-                dataSnapshot.children.mapNotNullTo(menuItems){
-                    it.getValue<MenuItem>(MenuItem::class.java)
+    fun getMenu(callback: MenuListCallback, idRest: String ) {
+        Log.e("Repo:", idRest)
+        firestore.collection("Restaurantes/$idRest/menu")
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    Log.e(TAG, "${document.id} => ${document.data}")
+                    var menuItem = document.toObject(MenuItem::class.java)
+                    menuItems.add(menuItem)
+                    Log.e(idRest, menuItem.toString() )
                 }
                 callback.onCallback(menuItems)
             }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Getting Post failed, log a message
-                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+            .addOnFailureListener { exception ->
+                Log.e(TAG, "Error getting documents: ", exception)
             }
-        }
-        database.child("Carta").addListenerForSingleValueEvent(menuItemListener)
     }
+
+
 
     // Callback para esperar los resultados de Firebase
     interface MenuListCallback {
         fun onCallback(value:List<MenuItem>)
     }
-}
+
+    interface RestaurantsCallback {
+        fun onCallback(value:List<Restaurant>)
+    }
+
+
+
+
+
+    }
+
+

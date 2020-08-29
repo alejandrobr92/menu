@@ -18,6 +18,6 @@ class RestaurantViewModel : ViewModel() {
     // from Firebase
     private fun getRestaurants() {
         Log.e("ViewModel", "getRest executed")
-        restaurants.value= repository.getRestaurants()
+      //  restaurants.value= repository.getRestaurants()
     }
 }
