@@ -37,7 +37,7 @@ class MenuItemAdapter (private val menu : List<MenuItem>, val itemClickListener:
             var name: TextView = itemView.findViewById<TextView>(R.id.menu_item_name)
             var price: TextView = itemView.findViewById<TextView>(R.id.menu_item_price)
             val boton = itemView.findViewById<Button>(R.id.addItemToPedido)
-            boton.tag = position
+            boton.tag = menuItem.id
             name.text= menuItem.name
             price.text = menuItem.price.toString()
 

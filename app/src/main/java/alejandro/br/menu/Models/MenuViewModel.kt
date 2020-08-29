@@ -6,10 +6,10 @@ import androidx.lifecycle.ViewModel
 
 class MenuViewModel : ViewModel() {
 
-    val TAG = "MENU_VIEW_MODEL"
     var idRest = ""
     var menuItems : MutableLiveData<List<MenuItem>> = MutableLiveData()
     var pedidoItems : MutableLiveData<MutableMap<MenuItem, Int>> = MutableLiveData()
+    var totalPedido = MutableLiveData<Double>()
     private val repository = Repository()
 
     init {

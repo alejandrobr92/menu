@@ -1,13 +1,17 @@
 package alejandro.br.menu.Models
 
 
-data class MenuItem(var name: String, var price: Double, var photo: String, var  details: String, var category : String){
+data class MenuItem(var id: String, var name: String, var price: Double, var photo: String, var  details: String, var category : String){
 
-    constructor(name : String, price: Double, category: String) :  this(name, price, category, "No photo", "No deatils"){
+    constructor( name : String, price: Double, photo: String , details: String, category: String) :  this("", name, price, category, photo, details){
     }
-    constructor() : this("",0.0, "","","") {
+    constructor(id: String, name : String, price: Double, category: String) :  this(id, name, price, category, "No photo", "No deatils"){
     }
-    constructor(name: String, price: Double) : this (name, price,"","",""){
+    constructor(id:String , name: String, price: Double) : this (id,  name, price,"","",""){
+    }
+    constructor( name: String, price: Double) : this ("",  name, price,"","",""){
+    }
+    constructor() : this("", "",0.0, "","","") {
     }
 
     override fun equals(other: Any?): Boolean {

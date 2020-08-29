@@ -95,10 +95,9 @@ class PlaceholderFragmentPages : Fragment(), View.OnClickListener {
     // Listener to add item to pedido
    override fun onClick(view: View) {
 
-            Log.e("Position: ", view.tag.toString())
-            val name= menuViewModel.menuItems.value!!.get(view.tag as Int).name
-            val price= menuViewModel.menuItems.value!!.get(view.tag as Int).price
-            var pedidoItem = MenuItem(name, price)
+            val name= menuViewModel.menuItems.value!!.filter { mi -> mi.id==view.tag }.toList().get(0).name
+            val price= menuViewModel.menuItems.value!!.filter { mi -> mi.id==view.tag }.toList().get(0).price
+            var pedidoItem = MenuItem(view.tag as String,name, price)
 
             if(!menuViewModel.pedidoItems.value!!.isEmpty()){
 

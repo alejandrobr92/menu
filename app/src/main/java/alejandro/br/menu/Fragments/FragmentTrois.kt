@@ -12,6 +12,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -34,18 +36,19 @@ class FragmentTrois : Fragment(), View.OnClickListener{
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_trois, container, false)
 
-        Log.e("PEDIDO",menuViewModel.pedidoItems.value.toString())
-        Log.e("FragmentTrois", "Called ViewModelProviders.of")
-
         menuViewModel.pedidoItems.observe(viewLifecycleOwner, Observer {
             if( menuViewModel.pedidoItems.value != null) {
                 for ((k, v) in menuViewModel.pedidoItems.value!!) {
-                    println("value of $k is $v")
                     var pedidoItem = PedidoItem(k.name, k.price, v)
                     listPedido.add(pedidoItem)
                 }
+                menuViewModel.totalPedido.value = listPedido.sumByDouble { it -> it.quantity * it.price  }
                 fillPedido(root, listPedido)
             }
+        })
+
+        menuViewModel.totalPedido.observe(viewLifecycleOwner, Observer {
+            total.text= menuViewModel.totalPedido.value.toString()
         })
 
 
@@ -54,8 +57,6 @@ class FragmentTrois : Fragment(), View.OnClickListener{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
     }
 
     fun fillPedido(root: View, listPedido: List<PedidoItem>){

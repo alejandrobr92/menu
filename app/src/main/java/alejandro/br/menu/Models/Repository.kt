@@ -46,7 +46,9 @@ class Repository(){
                 menuItems.clear()
                 for (document in snapshot!!) {
                     Log.e(TAG, "${document.id} => ${document.data}")
-                    menuItems.add(document.toObject(MenuItem::class.java))
+                    var menuItem = document.toObject(MenuItem::class.java)
+                    menuItem.id= document.id
+                    menuItems.add(menuItem)
                 }
                 callback.onCallback(menuItems)
             }
