@@ -38,41 +38,55 @@
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/pedido_name"
-                    android:layout_toLeftOf="@id/pedido_quantity"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp">
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="31dp"
+                    android:layout_marginRight="31dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_toStartOf="@+id/pedido_sign_x"
+                    android:layout_toLeftOf="@+id/pedido_sign_x">
+
+            </TextView>
+
+            <TextView
+                    android:id="@+id/pedido_sign_x"
+                    style="@style/pedido_item"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pedido_name"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginRight="37dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_toLeftOf="@+id/pedido_quantity">
 
             </TextView>
 
             <TextView
                     android:id="@+id/pedido_quantity"
                     style="@style/pedido_item"
-                    android:layout_width="41dp"
+                    android:layout_width="20dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/pedido_name"
-                    android:layout_toLeftOf="@+id/pedido_total_parcial"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="8dp">
+                    android:layout_marginTop="4dp"
+                    android:layout_marginRight="31dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_toLeftOf="@+id/pedido_total_parcial">
 
             </TextView>
 
             <TextView
-                android:id="@+id/pedido_total_parcial"
-                style="@style/pedido_item"
-                android:layout_width="41dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/pedido_name"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="62dp">
+                    android:id="@+id/pedido_total_parcial"
+                    style="@style/pedido_item"
+                    android:layout_width="94dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pedido_name"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="62dp"
+                    android:layout_marginBottom="8dp">
 
-        </TextView>
-
+            </TextView>
 
 
         </RelativeLayout>

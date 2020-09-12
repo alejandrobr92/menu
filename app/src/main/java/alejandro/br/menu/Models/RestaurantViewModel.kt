@@ -1,5 +1,6 @@
 package alejandro.br.menu.Models
 
+import alejandro.br.menu.Models.Pokos.Restaurant
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,9 +15,11 @@ class RestaurantViewModel : ViewModel() {
         getRestaurants()
     }
 
-    // Get restaurants
-    // from Firebase
+    // Get restaurants from Firebase
     private fun getRestaurants() {
         Log.e("ViewModel", "getRest executed")
     }
+
+
+
 }

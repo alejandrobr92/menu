@@ -10,7 +10,7 @@
 
     <!-- Recycler Pedidos -->
     <style name="pedido_item">
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="background">@color/cardview_light_background</item>
     </style>
 

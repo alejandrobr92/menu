@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
 
         menuViewModel= ViewModelProviders.of(this).get(MenuViewModel::class.java)
         menuViewModel.idRest= intent.getStringExtra("idRest")
-        Log.e("MainAc", menuViewModel.idRest)
         menuViewModel.initMenuViewModel()
 
         menuViewModel.pedidoItems.observe(this, Observer {

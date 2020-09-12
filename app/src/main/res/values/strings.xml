@@ -13,15 +13,21 @@
     <string name="action_settings">Settings</string>
 
     <!-- TABS CATEGORIES-->
-    <string name="tab_cat_un">food</string>
-    <string name="tab_cat_deux">drinks</string>
-    <string name="tab_cat_trois">desserts</string>
-    <string name="tab_cat_quatre">salads</string>
+    <string name="tab_cat_un">Comida</string>
+    <string name="tab_cat_deux">Bebidas</string>
+    <string name="tab_cat_trois">Postres</string>
+    <string name="tab_cat_quatre">Ensaladas</string>
 
+    <!-- Item menu-->
+    <string name="sign_pesos">$</string>
+
+    <!-- Mi pedido screen-->
+    <string name="confirm_order">Enviar</string>
+    <string name="pay_order">Pagar</string>
 
     <string name="detalles">Esta cerveza originaria de Bélgica ofrece numerosos sabores y con distintas graduaciones de alcohol, lo
     que es ideal para todo tipo de eventos, aunque en general, todas las presentaciones de Grinbergen contienen entre 6 y hasta 10.5% de alcohol,
     lo que es más que lo que tienen casi todas las cervezas en México.</string>
-    <string name="SelectRest">¿En qué restaurante se encuentra?</string>
+    <string name="SelectRest">¿En qué lugar se encuentra?</string>
 
 </resources>

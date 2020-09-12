@@ -1,18 +1,15 @@
 package alejandro.br.menu.Models
 
+import alejandro.br.menu.Models.Pokos.MenuItem
+import alejandro.br.menu.Models.Pokos.Order
+import alejandro.br.menu.Models.Pokos.Restaurant
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
+import java.util.*
 
 class Repository(){
 
     val TAG =  "FIREBASE_REPOSITORY"
-    var database = FirebaseDatabase.getInstance().reference
     var menuItems : MutableList<MenuItem> = mutableListOf()
     var firestore = FirebaseFirestore.getInstance()
     private var restaurants : MutableList<Restaurant> = mutableListOf()
@@ -24,8 +21,14 @@ class Repository(){
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
-                    Log.e(TAG, "${document.id} => ${document.data}")
-                    restaurants.add(Restaurant(document.id,document["name"].toString(), document["photo"].toString(), document["description"].toString()))
+                    restaurants.add(
+                        Restaurant(
+                            document.id,
+                            document["name"].toString(),
+                            document["photo"].toString(),
+                            document["description"].toString()
+                        )
+                    )
                 }
                 callback.onCallback(restaurants)
             }
@@ -45,7 +48,6 @@ class Repository(){
                 }
                 menuItems.clear()
                 for (document in snapshot!!) {
-                    Log.e(TAG, "${document.id} => ${document.data}")
                     var menuItem = document.toObject(MenuItem::class.java)
                     menuItem.id= document.id
                     menuItems.add(menuItem)
@@ -53,24 +55,16 @@ class Repository(){
                 callback.onCallback(menuItems)
             }
 
+    }
 
 
-    /*    firestore.collection("Restaurantes/$idRest/menu")
-            .get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    Log.e(TAG, "${document.id} => ${document.data}")
-                    var menuItem = document.toObject(MenuItem::class.java)
-                    menuItems.add(menuItem)
-                    Log.e(idRest, menuItem.toString() )
-                }
-                callback.onCallback(menuItems)
-            }
-            .addOnFailureListener { exception ->
-                Log.e(TAG, "Error getting documents: ", exception)
-            }
-
-     */
+    fun saveOrder(idRest: String, listPedido: MutableMap<MenuItem, Int>, total: Double){
+        // Creates a new order with and id
+        var ref = firestore.collection("Restaurantes/$idRest/orders").document()
+        var content = listPedido.mapKeys{ k -> k.key.id}
+        var order = Order(content , Date(), "6",  total)
+        // Save the order in a document
+        ref.set(order)
     }
 
 
@@ -81,7 +75,7 @@ class Repository(){
     }
 
     interface RestaurantsCallback {
-        fun onCallback(value:List<Restaurant>)
+        fun onCallback(value:MutableList<Restaurant>)
     }
 
 

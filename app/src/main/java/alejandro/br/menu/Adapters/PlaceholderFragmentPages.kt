@@ -1,19 +1,23 @@
 package alejandro.br.menu.Adapters
 
-import alejandro.br.menu.Models.MenuItem
 import alejandro.br.menu.Models.MenuViewModel
-import alejandro.br.menu.R
 import alejandro.br.menu.Models.PageViewModel
+import alejandro.br.menu.Models.Pokos.MenuItem
+import alejandro.br.menu.R
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.*
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.frag_menu_item_card.view.*
 
 
 /**
@@ -85,33 +89,35 @@ class PlaceholderFragmentPages : Fragment(), View.OnClickListener {
             var menuFiltered = it.filter { it.category.equals(category) }
             recyclerView = root.findViewById(R.id.recycler_category)
             recyclerView.layoutManager= LinearLayoutManager(context)
-            adapter= MenuItemAdapter(menuFiltered, this)
+            adapter= MenuItemAdapter(menuFiltered, this, menuViewModel)
             recyclerView.adapter= adapter
         })
     }
-
-
 
     // Listener to add item to pedido
    override fun onClick(view: View) {
 
             val name= menuViewModel.menuItems.value!!.filter { mi -> mi.id==view.tag }.toList().get(0).name
             val price= menuViewModel.menuItems.value!!.filter { mi -> mi.id==view.tag }.toList().get(0).price
-            var pedidoItem = MenuItem(view.tag as String,name, price)
+            val quantity = view.rootView.counter.text.toString().toInt()
+            var pedidoItem = MenuItem(
+                view.tag as String,
+                name,
+                price
+            )
 
             if(!menuViewModel.pedidoItems.value!!.isEmpty()){
 
                 if (!menuViewModel.pedidoItems.value!!.contains(pedidoItem)) {
-                    menuViewModel.pedidoItems.value!!.put(pedidoItem, 1)
+                    menuViewModel.pedidoItems.value!!.put(pedidoItem, quantity)
                 }
                 else  {
                     var oldValue = menuViewModel.pedidoItems.value!!.get(pedidoItem)!!
-                    menuViewModel.pedidoItems.value!!.put(pedidoItem, oldValue+1)
-                    Log.e("PEDIDO", menuViewModel.pedidoItems.value.toString())
+                    menuViewModel.pedidoItems.value!!.put(pedidoItem, oldValue+quantity)
                 }
             }
             else{
-                menuViewModel.pedidoItems.value!!.put(pedidoItem, 1)
+                menuViewModel.pedidoItems.value!!.put(pedidoItem, quantity)
 
             }
         Log.e("PedidoItems", menuViewModel.pedidoItems.value.toString())

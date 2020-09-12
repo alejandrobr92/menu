@@ -1,6 +1,6 @@
 package alejandro.br.menu.Adapters
 
-import alejandro.br.menu.Models.Restaurant
+import alejandro.br.menu.Models.Pokos.Restaurant
 import alejandro.br.menu.R
 import alejandro.br.menu.activities.MainActivity
 import android.content.Intent
@@ -12,7 +12,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
-class RestaurantAdapter (private val list: List<Restaurant>) : RecyclerView.Adapter<RestaurantAdapter.ViewHolder>() {
+class RestaurantAdapter (private val list: MutableList<Restaurant>) : RecyclerView.Adapter<RestaurantAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -32,11 +32,18 @@ class RestaurantAdapter (private val list: List<Restaurant>) : RecyclerView.Adap
           //  desc.text= restaurant.desc
             Picasso.get().load(restaurant.photo).into(logo)
             cardView.setOnClickListener {
-                val intent = Intent(itemView.context   , MainActivity::class.java)
+
+                val intent = Intent(itemView.context, MainActivity::class.java)
                 intent.putExtra("idRest",restaurant.id)
                 itemView.context.startActivity(intent)
             }
         }
+    }
+
+    fun removeItem(viewHolder: ViewHolder){
+        list.removeAt(viewHolder.adapterPosition)
+        notifyItemRemoved(viewHolder.adapterPosition)
+
     }
 
     interface RestaurantListener {

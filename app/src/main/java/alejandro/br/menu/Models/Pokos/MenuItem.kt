@@ -1,4 +1,4 @@
-package alejandro.br.menu.Models
+package alejandro.br.menu.Models.Pokos
 
 
 data class MenuItem(var id: String, var name: String, var price: Double, var photo: String, var  details: String, var category : String){
@@ -14,6 +14,15 @@ data class MenuItem(var id: String, var name: String, var price: Double, var pho
     constructor() : this("", "",0.0, "","","") {
     }
 
+
+
+    override fun hashCode(): Int {
+        var result = name.hashCode()
+        result = 31 * result + price.hashCode()
+        result = 31 * result + category.hashCode()
+        return result
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -21,16 +30,8 @@ data class MenuItem(var id: String, var name: String, var price: Double, var pho
         other as MenuItem
 
         if (name != other.name) return false
-        if (price != other.price) return false
 
         return true
-    }
-
-    override fun hashCode(): Int {
-        var result = name.hashCode()
-        result = 31 * result + price.hashCode()
-        result = 31 * result + category.hashCode()
-        return result
     }
 
 

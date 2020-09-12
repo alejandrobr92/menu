@@ -1,7 +1,7 @@
 package alejandro.br.menu.Adapters
 
 import alejandro.br.menu.R
-import alejandro.br.menu.Models.CategoryMenu
+import alejandro.br.menu.Models.Pokos.Category
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
-class FCategoriesAdapter (private val list: List<CategoryMenu>, private val categoryListener : CategorytItemListener) : RecyclerView.Adapter<FCategoriesAdapter.ViewHolder>() {
+class FCategoriesAdapter (private val list: List<Category>, private val categoryListener : CategorytItemListener) : RecyclerView.Adapter<FCategoriesAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

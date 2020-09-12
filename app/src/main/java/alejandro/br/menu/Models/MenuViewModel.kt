@@ -1,5 +1,6 @@
 package alejandro.br.menu.Models
 
+import alejandro.br.menu.Models.Pokos.MenuItem
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,7 +19,6 @@ class MenuViewModel : ViewModel() {
 }
 
 
-
     fun initMenuViewModel(){
         getMenuItems(idRest)
     }
@@ -27,12 +27,19 @@ class MenuViewModel : ViewModel() {
     // desde Firebase
     private fun getMenuItems(idRest: String) {
 
-        repository.getMenu(object:Repository.MenuListCallback{
+        repository.getMenu(object:
+            Repository.MenuListCallback {
             // Se crea el LiveData cuando el menu está listo
             override fun onCallback(menu: List<MenuItem>) {
-                Log.e("MENU FROM MenuViewModel" , menu.toString())
                 menuItems.value = menu
             }
         }, idRest)
     }
+
+
+    fun saveOrder(){
+        // TODO Check for ivalid orders
+        repository.saveOrder(idRest, pedidoItems.value!!, totalPedido.value!!)
+    }
+
 }
