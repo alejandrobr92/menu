@@ -7,11 +7,17 @@ import alejandro.br.menu.Models.Pokos.MenuItem
 import alejandro.br.menu.Models.Pokos.PedidoItem
 import alejandro.br.menu.Models.Repository
 import alejandro.br.menu.R
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.Icon
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -28,6 +34,8 @@ class FragmentTrois : Fragment(), View.OnClickListener {
     private lateinit var adapter: PedidoAdapter
     private lateinit var recyclerView: RecyclerView
     var listPedido: MutableList<PedidoItem>
+    private lateinit var iconDelete :  Drawable
+    private var  swipeBackgroud: ColorDrawable = ColorDrawable(Color.parseColor("#FF0000"))
 
 
     // Use the 'by activityViewModels()' Kotlin property delegate
@@ -40,6 +48,8 @@ class FragmentTrois : Fragment(), View.OnClickListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_trois, container, false)
+
+        iconDelete=  ContextCompat.getDrawable(requireContext(), R.drawable.ic_delete)!!
 
         menuViewModel.pedidoItems.observe(viewLifecycleOwner, Observer {
             Log.e("pedidoItems", menuViewModel.pedidoItems.value.toString())
@@ -98,6 +108,30 @@ class FragmentTrois : Fragment(), View.OnClickListener {
             adapter.removeItem(viewHolder as PedidoAdapter.ViewHolder, removedItem)
             menuViewModel.pedidoItems.value?.remove(menuItem)
             calculateTotalPedido()
+        }
+
+        override fun onChildDraw(
+            c: Canvas,
+            recyclerView: RecyclerView,
+            viewHolder: RecyclerView.ViewHolder,
+            dX: Float,
+            dY: Float,
+            actionState: Int,
+            isCurrentlyActive: Boolean
+        ) {
+            val itemView = viewHolder.itemView
+            val iconMargin = (itemView.height - iconDelete!!.intrinsicHeight) /2
+            if(dX>0){
+                swipeBackgroud.setBounds(itemView.left, itemView.top, dX.toInt(), itemView.bottom)
+                iconDelete.setBounds(itemView.left + iconMargin, itemView.top + iconMargin, itemView.left+iconMargin+  iconDelete.intrinsicWidth, itemView.bottom - iconMargin )
+            }
+            else{
+                swipeBackgroud.setBounds(itemView.right+dX.toInt(), itemView.top, itemView.right, itemView.bottom)
+                iconDelete.setBounds(itemView.right - iconMargin - iconDelete.intrinsicWidth, itemView.top + iconMargin, itemView.right - iconMargin , itemView.bottom - iconMargin )
+            }
+            swipeBackgroud.draw(c)
+            iconDelete.draw(c)
+            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
         }
     }
 
