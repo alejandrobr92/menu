@@ -62,7 +62,7 @@ class Repository(){
         // Creates a new order with and id
         var ref = firestore.collection("Restaurantes/$idRest/orders").document()
         var content = listPedido.mapKeys{ k -> k.key.id}
-        var order = Order(content , Date(), "6",  total)
+        var order = Order(arrayOf(content), Date(), "6", total)
         // Save the order in a document
         ref.set(order)
     }

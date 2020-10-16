@@ -109,7 +109,7 @@ class FragmentTrois : Fragment(), View.OnClickListener {
             menuViewModel.pedidoItems.value?.remove(menuItem)
             calculateTotalPedido()
         }
-
+        // Method to show red color and icon when deleting
         override fun onChildDraw(
             c: Canvas,
             recyclerView: RecyclerView,
