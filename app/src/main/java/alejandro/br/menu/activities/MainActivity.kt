@@ -32,11 +32,12 @@ class MainActivity : AppCompatActivity() {
         menuViewModel.idRest= "ORoDlpiidmmId2F60boJ"
         menuViewModel.initMenuViewModel()
 
-        menuViewModel.pedidoItems.observe(this, Observer {
+        // Show notif
+        /*menuViewModel.pedidoItems.observe(this, Observer {
             val badge: BadgeDrawable = bottom_navigation.getOrCreateBadge(
                 R.id.fragmentTrois)
-            badge.isVisible = true
-        } )
+                badge.isVisible = true
+        } )*/
 
         setSupportActionBar(toolbar)
 
