@@ -4,14 +4,18 @@ import com.google.firebase.Timestamp
 import com.google.firebase.firestore.ServerTimestamp
 import java.util.*
 
-data class Order (
-    val content: Array<Map<String, Int>>,
-    @ServerTimestamp  val time : Date,
-    val table: String,
-    val total: Double
-)
-/*{
+data class Order(
 
-    constructor( id: String, content: Map<MenuItem,Int>, table: String, total: Double) :  this(id, content, null , table, total){
+    var content: MutableList<PedidoItem>?,
+   // val content: Array<Map<String, Any>>?,
+    //Change to list of orderItems
+   // val content: Array<Map<String, Int>>,
+    @ServerTimestamp var time: Date?,
+    var table: String?,
+    var total: Double
+
+)
+{
+    constructor() :  this( null, null , null, 0.0){
     }
-}*/
+}

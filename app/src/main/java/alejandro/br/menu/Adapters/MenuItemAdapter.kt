@@ -2,6 +2,7 @@ package alejandro.br.menu.Adapters
 
 import alejandro.br.menu.Models.MenuViewModel
 import alejandro.br.menu.Models.Pokos.MenuItem
+import alejandro.br.menu.Models.Pokos.PedidoItem
 import alejandro.br.menu.R
 import alejandro.br.menu.activities.DetailMealTwoActivity
 import android.content.Intent
@@ -12,11 +13,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.frag_menu_item_card.view.*
 
 class MenuItemAdapter (private val menu : List<MenuItem>, val addBtnClick : View.OnClickListener, val menuViewModel: MenuViewModel) : RecyclerView.Adapter<MenuItemAdapter.ViewHolder>(){
 
@@ -51,26 +48,48 @@ class MenuItemAdapter (private val menu : List<MenuItem>, val addBtnClick : View
 
             // Set listeners for buttons
 
-            addToOrderBtn.setOnClickListener{ view->
-                val item= menuViewModel.menuItems.value!!.filter { mi -> mi.id==view.tag }.toList()
+            addToOrderBtn.setOnClickListener { view ->
+                val item =
+                    menuViewModel.menuItems.value!!.filter { mi -> mi.id == view.tag }.toList()
                 val name = item.get(0).name
                 val price = item.get(0).price
-                //val price= menuViewModel.menuItems.value!!.filter { mi -> mi.id==view.tag }.toList().get(0).price
-                val quantity = counter.text.toString().toInt()
-                var pedidoItem = MenuItem(view.tag as String, name, price)
+                val quantity = counter.text.toString().toLong()
+                var pedidoItem = PedidoItem(view.tag as String, name, price, quantity, "confirmed")
 
-                if(!menuViewModel.pedidoItems.value!!.isEmpty()){
-                    if (!menuViewModel.pedidoItems.value!!.contains(pedidoItem)) {
-                        menuViewModel.pedidoItems.value!!.put(pedidoItem, quantity)
+
+                if (menuViewModel.contentOrder.value != null) {
+
+                    // TODO Check conditions to work properly
+
+                    if (!menuViewModel.contentOrder.value!!.isEmpty()) {
+
+                        Log.e("Beforre adding", menuViewModel.contentOrder.value!!.toString())
+                        // We check both id and state fields
+                        if (menuViewModel.contentOrder.value!!.filter { orderItem ->
+                                orderItem.id.equals(pedidoItem.id)
+                            }.isNotEmpty()) {
+                            if(menuViewModel.contentOrder.value!!.filter { orderItem ->
+                                orderItem.id.equals(pedidoItem.id) && !orderItem.state.equals("confirmed")
+                            }.isNotEmpty()) { menuViewModel.contentOrder.value!!.filter { orderItem ->
+                                orderItem.id.equals(pedidoItem.id) && !orderItem.state.equals("confirmed")
+                            }.forEach { orderItem ->
+                                Log.e("orderItem", orderItem.toString())
+                                orderItem.quantity += pedidoItem.quantity
+                            }
+                            }
+                        }
+                        else {
+                            menuViewModel.contentOrder.value!!.add(pedidoItem)
+                        }
                     }
-                    else  {
-                        var oldValue = menuViewModel.pedidoItems.value!!.get(pedidoItem)!!
-                        menuViewModel.pedidoItems.value!!.put(pedidoItem, oldValue+quantity)
+                    else {
+                        menuViewModel.contentOrder.value!!.add(pedidoItem)
+                        Log.e("Beforre adding", menuViewModel.contentOrder.value!!.toString())
                     }
+                    counter.text = "0"
                 }
-                else{ menuViewModel.pedidoItems.value!!.put(pedidoItem, quantity) }
-                counter.text= "0"
             }
+
             incCountBtn.setOnClickListener{
                 var flag  = counter.text.toString().toInt() +1
                 counter.text= flag.toString()
