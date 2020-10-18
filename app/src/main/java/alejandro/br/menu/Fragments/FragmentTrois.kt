@@ -1,19 +1,15 @@
 package alejandro.br.menu.Fragments
 
 import alejandro.br.menu.Adapters.PedidoAdapter
-import alejandro.br.menu.Adapters.RestaurantAdapter
 import alejandro.br.menu.Models.MenuViewModel
 import alejandro.br.menu.Models.Pokos.MenuItem
 import alejandro.br.menu.Models.Pokos.PedidoItem
-import alejandro.br.menu.Models.Repository
 import alejandro.br.menu.R
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
-import android.graphics.drawable.Icon
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +20,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_select_rest.*
 import kotlinx.android.synthetic.main.frag_pedido_card.view.*
 import kotlinx.android.synthetic.main.fragment_trois.*
 
@@ -51,20 +46,30 @@ class FragmentTrois : Fragment(), View.OnClickListener {
 
         iconDelete=  ContextCompat.getDrawable(requireContext(), R.drawable.ic_delete)!!
 
-        menuViewModel.pedidoItems.observe(viewLifecycleOwner, Observer {
-            Log.e("pedidoItems", menuViewModel.pedidoItems.value.toString())
+       /* menuViewModel.pedidoItems.observe(viewLifecycleOwner, Observer {
             if (menuViewModel.pedidoItems.value != null) {
                 for ((k, v) in menuViewModel.pedidoItems.value!!) {
-                    var pedidoItem = PedidoItem(k.id, k.name, k.price, v, "pending")
+                    var pedidoItem = PedidoItem(k.id, k.name, k.price, v, "delivered")
                     listPedido.add(pedidoItem)
                 }
                 calculateTotalPedido()
                 fillPedido(root, listPedido)
             }
+        })*/
+        menuViewModel.contentOrder.observe(viewLifecycleOwner, Observer {
+            if (menuViewModel.contentOrder.value != null) {
+                // Update total
+                menuViewModel.totalPedido.value =
+                    menuViewModel.contentOrder.value!!.sumByDouble { it -> it.quantity * it.price }
+                // Update recyclerView
+                fillPedido(root, menuViewModel.contentOrder.value!!)
+            }
         })
-            menuViewModel.totalPedido.observe(viewLifecycleOwner, Observer {
-                total.text = menuViewModel.totalPedido.value.toString()
-            })
+
+
+        menuViewModel.totalPedido.observe(viewLifecycleOwner, Observer {
+            total.text = menuViewModel.totalPedido.value.toString()
+        })
 
         return root
     }
@@ -87,28 +92,40 @@ class FragmentTrois : Fragment(), View.OnClickListener {
             itemTouchHelper.attachToRecyclerView(recyclerView)
     }
 
+
+
     // Set swipe to delete
     val itemTouchHelperCallback = object :
         ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
         override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
             return false
         }
+
+        override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
+            if (listPedido[viewHolder.adapterPosition].state.equals("delivered")){
+                return 0
+            }
+            return super.getMovementFlags(recyclerView, viewHolder)
+        }
         override fun onSwiped(viewHolder: RecyclerView.ViewHolder, position: Int) {
-           var removedItem =  PedidoItem(
-               viewHolder.itemView.pedido_card.tag.toString(),
-               viewHolder.itemView.pedido_name.text.toString(),
-               viewHolder.itemView.pedido_price.text.toString().toDouble(),
-                viewHolder.itemView.pedido_quantity.text.toString().toInt(),
-                "delivered")
-            var menuItem = MenuItem(
+                var removedItem =  PedidoItem(
+                    viewHolder.itemView.pedido_card.tag.toString(),
+                    viewHolder.itemView.pedido_name.text.toString(),
+                    viewHolder.itemView.pedido_price.text.toString().toDouble(),
+                    viewHolder.itemView.pedido_quantity.text.toString().toLong(),
+                      "delivered")
+                var menuItem = MenuItem(
                 viewHolder.itemView.pedido_card.tag.toString(),
                 viewHolder.itemView.pedido_name.text.toString(),
                 viewHolder.itemView.pedido_price.text.toString().toDouble()
                 )
             adapter.removeItem(viewHolder as PedidoAdapter.ViewHolder, removedItem)
-            menuViewModel.pedidoItems.value?.remove(menuItem)
+           // menuViewModel.pedidoItems.value?.remove(menuItem)
             calculateTotalPedido()
-        }
+            }
+
+
+
         // Method to show red color and icon when deleting
         override fun onChildDraw(
             c: Canvas,
@@ -135,8 +152,9 @@ class FragmentTrois : Fragment(), View.OnClickListener {
         }
     }
 
+    // We do not need this function anymore, we do it in contentOrder.observe
     fun calculateTotalPedido(){
-        menuViewModel.totalPedido.value = listPedido.sumByDouble { it -> it.quantity * it.price }
+      //  menuViewModel.totalPedido.value = listPedido.sumByDouble { it -> it.quantity * it.price }
     }
 
     override fun onClick(p0: View?) {

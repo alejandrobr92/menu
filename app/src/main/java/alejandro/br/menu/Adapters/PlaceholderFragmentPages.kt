@@ -97,7 +97,7 @@ class PlaceholderFragmentPages : Fragment(), View.OnClickListener {
     // Listener to add item to pedido
    override fun onClick(view: View) {
 
-            val name= menuViewModel.menuItems.value!!.filter { mi -> mi.id==view.tag }.toList().get(0).name
+        /*    val name= menuViewModel.menuItems.value!!.filter { mi -> mi.id==view.tag }.toList().get(0).name
             val price= menuViewModel.menuItems.value!!.filter { mi -> mi.id==view.tag }.toList().get(0).price
             val quantity = view.rootView.counter.text.toString().toInt()
             var pedidoItem = MenuItem(
@@ -121,7 +121,7 @@ class PlaceholderFragmentPages : Fragment(), View.OnClickListener {
 
             }
         Log.e("PedidoItems", menuViewModel.pedidoItems.value.toString())
-
+        */
     }
 
 }

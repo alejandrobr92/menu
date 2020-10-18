@@ -46,9 +46,6 @@ class RestaurantAdapter (private val list: MutableList<Restaurant>) : RecyclerVi
 
     }
 
-    interface RestaurantListener {
-    }
-
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val cardView = itemView.findViewById<CardView>(R.id.card_rest)
        // val name: TextView = itemView.findViewById<TextView>(R.id.name__rest)
