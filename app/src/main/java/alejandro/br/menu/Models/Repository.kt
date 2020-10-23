@@ -62,8 +62,6 @@ class Repository(){
     // Creates the order to start observing
     fun createEmptyCurrentOrder(callback: FirstOrderCalback, idRest: String){
         val ref= firestore.collection("Restaurantes/$idRest/orders").document()
-       // var fisrtList = mutableListOf<PedidoItem>()
-       // fisrtList.add(PedidoItem( "Luz", 8.8, 4, "desc"))
         var preorder = Order(mutableListOf(), Date(), "2", 0.0)
         ref.set(preorder).addOnCompleteListener{
         Log.e("RefID", ref.id)
@@ -83,13 +81,14 @@ class Repository(){
                     // Creates a list with content's content
                     var arrayList : ArrayList<Map<String, Any>>
                     arrayList = snapshot.data!!.get("content") as ArrayList<Map<String, Any>>
-                    Log.e("arrayList", arrayList.toString())
+
                     var list = mutableListOf<PedidoItem>()
-                    arrayList.map {
+                    arrayList
+                        .map {
                         PedidoItem(
                             it["id"] as String,
                             it["name"] as String,
-                            it["price"] as Double,
+                            it["price"] as Double ,
                             it["quantity"] as Long,
                             it["state"] as String
                         )

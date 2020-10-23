@@ -45,9 +45,9 @@ class PedidoAdapter (private val pedido : MutableList<PedidoItem>, val itemClick
             price.text = pedidoItem.price.toString()
             signX.text = "x"
             quantity.text = pedidoItem.quantity.toString()
-            totalParcial.text = (pedidoItem.price * pedidoItem.quantity).toString()
+            totalParcial.text = (pedidoItem.price as Double * pedidoItem.quantity).toString()
 
-            // Fade item is already delivered
+            // Fade item if is already delivered
             if(pedidoItem.state.equals("delivered")){
                cardView.alpha= 0.5F
             }

@@ -10,6 +10,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +29,6 @@ class FragmentTrois : Fragment(), View.OnClickListener {
 
     private lateinit var adapter: PedidoAdapter
     private lateinit var recyclerView: RecyclerView
-    var listPedido: MutableList<PedidoItem>
     private lateinit var iconDelete :  Drawable
     private var  swipeBackgroud: ColorDrawable = ColorDrawable(Color.parseColor("#FF0000"))
 
@@ -37,9 +37,6 @@ class FragmentTrois : Fragment(), View.OnClickListener {
     // from the fragment-ktx artifact
     private val menuViewModel: MenuViewModel by activityViewModels()
 
-    init {
-        listPedido = mutableListOf()
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_trois, container, false)
@@ -102,7 +99,9 @@ class FragmentTrois : Fragment(), View.OnClickListener {
         }
 
         override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
-            if (listPedido[viewHolder.adapterPosition].state.equals("delivered")){
+            //Log.e("Swipe", listPedido.toString())
+           // Log.e("Swipe", viewHolder.adapterPosition.toString())
+            if (menuViewModel.contentOrder.value!![viewHolder.adapterPosition].state.equals("delivered")){
                 return 0
             }
             return super.getMovementFlags(recyclerView, viewHolder)

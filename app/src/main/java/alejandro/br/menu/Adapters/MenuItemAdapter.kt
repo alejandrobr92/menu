@@ -49,45 +49,29 @@ class MenuItemAdapter (private val menu : List<MenuItem>, val addBtnClick : View
             // Set listeners for buttons
 
             addToOrderBtn.setOnClickListener { view ->
-                val item =
-                    menuViewModel.menuItems.value!!.filter { mi -> mi.id == view.tag }.toList()
+                val item = menuViewModel.menuItems.value!!.filter { mi -> mi.id == view.tag }.toList()
                 val name = item.get(0).name
                 val price = item.get(0).price
                 val quantity = counter.text.toString().toLong()
-                var pedidoItem = PedidoItem(view.tag as String, name, price, quantity, "confirmed")
+                var pedidoItem = PedidoItem(view.tag as String, name, price, quantity, "pending")
+                Log.e("PedidoItem: ", pedidoItem.toString())
+                Log.e("Actual OrderContent", menuViewModel.contentOrder.value.toString())
 
 
                 if (menuViewModel.contentOrder.value != null) {
-
-                    // TODO Check conditions to work properly
-
-                    if (!menuViewModel.contentOrder.value!!.isEmpty()) {
-
-                        Log.e("Beforre adding", menuViewModel.contentOrder.value!!.toString())
-                        // We check both id and state fields
-                        if (menuViewModel.contentOrder.value!!.filter { orderItem ->
-                                orderItem.id.equals(pedidoItem.id)
-                            }.isNotEmpty()) {
-                            if(menuViewModel.contentOrder.value!!.filter { orderItem ->
-                                orderItem.id.equals(pedidoItem.id) && !orderItem.state.equals("confirmed")
-                            }.isNotEmpty()) { menuViewModel.contentOrder.value!!.filter { orderItem ->
-                                orderItem.id.equals(pedidoItem.id) && !orderItem.state.equals("confirmed")
-                            }.forEach { orderItem ->
-                                Log.e("orderItem", orderItem.toString())
-                                orderItem.quantity += pedidoItem.quantity
-                            }
-                            }
-                        }
-                        else {
-                            menuViewModel.contentOrder.value!!.add(pedidoItem)
-                        }
+                    var filteredList = menuViewModel.contentOrder.value!!.filter {
+                            it -> it.id.equals(pedidoItem.id) && it.state.equals(pedidoItem.state)
+                    }.toMutableList()
+                    Log.e("FilteredList", filteredList.toString())
+                    if(filteredList.size==1){
+                        Log.e("IndexOf",menuViewModel.contentOrder.value!!.indexOf(filteredList[0]).toString())
+                        menuViewModel.contentOrder.value!![menuViewModel.contentOrder.value!!.indexOf(filteredList[0])].quantity += pedidoItem.quantity
                     }
-                    else {
+                    else{
                         menuViewModel.contentOrder.value!!.add(pedidoItem)
-                        Log.e("Beforre adding", menuViewModel.contentOrder.value!!.toString())
                     }
-                    counter.text = "0"
-                }
+
+                    }
             }
 
             incCountBtn.setOnClickListener{

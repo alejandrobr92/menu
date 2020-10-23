@@ -12,9 +12,7 @@ class MenuViewModel : ViewModel() {
 
     var idRest = ""
     var menuItems : MutableLiveData<List<MenuItem>> = MutableLiveData()
-    // var pedidoItems : MutableLiveData<MutableMap<MenuItem, Int>> = MutableLiveData()
     //We observe contentOrder only
-    //var contentOrder: MutableLiveData<MutableList<PedidoItem>> = MutableLiveData()
     var contentOrder: MutableLiveData<MutableList<PedidoItem>> = MutableLiveData()
     lateinit var currentOrderId: String
     var totalPedido = MutableLiveData<Double>()
