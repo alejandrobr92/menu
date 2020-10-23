@@ -1,11 +1,9 @@
 package alejandro.br.menu.Models
 
-import alejandro.br.menu.Models.Pokos.MenuItem
-import alejandro.br.menu.Models.Pokos.Order
-import alejandro.br.menu.Models.Pokos.PedidoItem
-import alejandro.br.menu.Models.Pokos.Restaurant
+import alejandro.br.menu.Models.Pokos.*
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -15,6 +13,8 @@ class Repository(){
     var menuItems : MutableList<MenuItem> = mutableListOf()
     var firestore = FirebaseFirestore.getInstance()
     private var restaurants : MutableList<Restaurant> = mutableListOf()
+    private var recommendations : MutableList<Recommendation> = mutableListOf()
+    private var promotions : MutableList<String> = mutableListOf()
 
 
     fun getRestaurants(callback: RestaurantsCallback) {
@@ -38,7 +38,6 @@ class Repository(){
                 Log.d(TAG, "Error getting documents: ", exception)
             }
     }
-
 
     fun getMenu(callback: MenuListCallback, idRest: String ) {
 
@@ -105,8 +104,40 @@ class Repository(){
             }
     }
 
+    fun getPromotions(callback: PromotionsCallback, idRest: String){
+        firestore.collection("Restaurantes/$idRest/promotions")
+            .addSnapshotListener{ snapshot, e ->
+                if (e != null) {
+                    Log.w(TAG, "Listen failed.", e)
+                    return@addSnapshotListener
+                }
+                if (snapshot != null) {
+                    for (document in snapshot){
+                        var promotion = document.getString("url")!!
+                        promotions.add(promotion)
+                    }
+                }
+                callback.onCallback(promotions)
+            }
+    }
 
-
+    fun getRecommendations(callback: RecommendationsCallback, idRest: String){
+        firestore.collection("Restaurantes/$idRest/recommendations")
+            .orderBy("rating", Query.Direction.DESCENDING)
+            .addSnapshotListener{ snapshot, e ->
+                if (e != null) {
+                    Log.w(TAG, "Listen failed.", e)
+                    return@addSnapshotListener
+                }
+                if (snapshot != null) {
+                    for (document in snapshot){
+                        var recommendation = document.toObject(Recommendation::class.java)
+                        recommendations.add(recommendation)
+                    }
+                }
+                callback.onCallback(recommendations)
+            }
+    }
     fun saveOrder(idRest: String, listPedido: MutableList<PedidoItem>, orderId: String,total: Double){
         // Creates a new order with and id
         var ref = firestore.document("Restaurantes/$idRest/orders/$orderId")
@@ -132,6 +163,14 @@ class Repository(){
 
     interface FirstOrderCalback {
         fun onCallback(value: MutableList<PedidoItem>, orderId: String )
+    }
+
+    interface  PromotionsCallback{
+        fun onCallback(value: MutableList<String>)
+    }
+
+    interface  RecommendationsCallback{
+        fun onCallback(value: MutableList<Recommendation>)
     }
 
 

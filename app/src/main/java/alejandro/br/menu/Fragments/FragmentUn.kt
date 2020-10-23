@@ -2,6 +2,7 @@ package alejandro.br.menu.Fragments
 
 import alejandro.br.menu.R
 import alejandro.br.menu.Adapters.FCategoriesAdapter
+import alejandro.br.menu.Models.MenuViewModel
 import alejandro.br.menu.Models.Pokos.Category
 import alejandro.br.menu.activities.PromotionsActivity
 import alejandro.br.menu.activities.RecommendationsActivity
@@ -12,11 +13,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_un.*
 
 class FragmentUn() : Fragment(), FCategoriesAdapter.CategorytItemListener{
+
+    private val menuViewModel: MenuViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view =inflater.inflate(R.layout.fragment_un, container, false)
@@ -29,11 +33,13 @@ class FragmentUn() : Fragment(), FCategoriesAdapter.CategorytItemListener{
 
         layout_promotions.setOnClickListener{
             val intent = Intent(context, PromotionsActivity::class.java)
+            intent.putExtra("idRest", menuViewModel.idRest)
             this.startActivity(intent)
         }
 
         layout_recomm.setOnClickListener{
             val intent = Intent(context, RecommendationsActivity::class.java)
+            intent.putExtra("idRest", menuViewModel.idRest)
             this.startActivity(intent)
         }
 

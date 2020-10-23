@@ -24,7 +24,6 @@ class SelectRestActivity : AppCompatActivity() {
 
         repository.getRestaurants(object:Repository.RestaurantsCallback{
             override fun onCallback(restaurants: MutableList<Restaurant>) {
-
                 adapter = RestaurantAdapter(restaurants)
                 recycler_restaurant.adapter = adapter
             }

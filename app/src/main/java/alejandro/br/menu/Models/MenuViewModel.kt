@@ -1,9 +1,6 @@
 package alejandro.br.menu.Models
 
-import alejandro.br.menu.Models.Pokos.MenuItem
-import alejandro.br.menu.Models.Pokos.Order
-import alejandro.br.menu.Models.Pokos.OrderItem
-import alejandro.br.menu.Models.Pokos.PedidoItem
+import alejandro.br.menu.Models.Pokos.*
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -21,9 +18,7 @@ class MenuViewModel : ViewModel() {
 
     init {
         Log.e("MenuViewModel", "MenuViewModel created with idRest= $idRest")
-       // pedidoItems.value = mutableMapOf()
-
-}
+    }
 
 
     fun initMenuViewModel(){
@@ -43,7 +38,6 @@ class MenuViewModel : ViewModel() {
             }
         }, idRest)
     }
-
 
     fun createEmptyCurrentOrder(idRest: String){
         repository.createEmptyCurrentOrder(object:

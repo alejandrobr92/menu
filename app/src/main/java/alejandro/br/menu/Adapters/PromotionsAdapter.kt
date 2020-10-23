@@ -12,20 +12,10 @@ import android.widget.ImageView
 import com.squareup.picasso.Picasso
 
 
-class PromotionsAdapter(activity: Activity): BaseAdapter() {
+class PromotionsAdapter(activity: Activity, promotions: MutableList<String>): BaseAdapter() {
 
-    var promotions = arrayListOf<String>()
+    var promotions = promotions
     private val activity= activity
-
-    init {
-        promotions.add("https://storage.googleapis.com/littlewaiter.appspot.com/Buff.jpeg")
-        promotions.add("https://storage.googleapis.com/littlewaiter.appspot.com/Buffa.jpeg")
-        promotions.add("https://storage.googleapis.com/littlewaiter.appspot.com/Buffal.jpeg")
-        promotions.add("https://storage.googleapis.com/littlewaiter.appspot.com/Buffalo.jpeg")
-        promotions.add("https://storage.googleapis.com/littlewaiter.appspot.com/Buffalos.jpeg")
-        promotions.add("https://storage.googleapis.com/littlewaiter.appspot.com/Potzolli.jpg")
-        promotions.add("https://storage.googleapis.com/littlewaiter.appspot.com/cprrecion%20buffalos.png")
-    }
 
     override fun getCount(): Int {
         return promotions.size
