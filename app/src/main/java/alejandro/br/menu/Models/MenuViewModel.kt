@@ -1,6 +1,8 @@
 package alejandro.br.menu.Models
 
+import alejandro.br.menu.Database.DatabaseHandler
 import alejandro.br.menu.Models.Pokos.*
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,6 +16,8 @@ class MenuViewModel : ViewModel() {
     var currentPartOfContent: MutableLiveData<Long> = MutableLiveData()
     lateinit var currentOrderId: String
     var totalPedido = MutableLiveData<Double>()
+    lateinit var db:DatabaseHandler
+
     private val repository = Repository()
 
 
@@ -23,9 +27,10 @@ class MenuViewModel : ViewModel() {
     }
 
 
-    fun initMenuViewModel(){
+    fun initMenuViewModel(context: Context){
         getMenuItems(idRest)
         createEmptyCurrentOrder(idRest)
+        db = DatabaseHandler(context)
     }
 
     // Obtiene el menu
@@ -47,7 +52,7 @@ class MenuViewModel : ViewModel() {
             override fun onCallback(content: MutableList<PedidoItem>, orderId: String) {
                 contentOrder.value= content
                 currentOrderId = orderId
-
+                db.addCurrentOrderId(currentOrderId)
             }
         }, idRest)
     }

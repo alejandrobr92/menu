@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         menuViewModel= ViewModelProviders.of(this).get(MenuViewModel::class.java)
        // menuViewModel.idRest= intent.getStringExtra("idRest")
         menuViewModel.idRest= "ORoDlpiidmmId2F60boJ"
-        menuViewModel.initMenuViewModel()
+        menuViewModel.initMenuViewModel(this)
 
         // Show notif
         /*menuViewModel.pedidoItems.observe(this, Observer {
