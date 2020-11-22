@@ -6,6 +6,7 @@ import alejandro.br.menu.R
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -39,6 +40,7 @@ class PedidoAdapter (private val pedido : MutableList<PedidoItem>, val itemClick
             var price: TextView = itemView.findViewById(R.id.pedido_price)
             var quantity: TextView = itemView.findViewById(R.id.pedido_quantity)
             var totalParcial: TextView = itemView.findViewById(R.id.pedido_total_parcial)
+            var icon: ImageView = itemView.findViewById(R.id.state_Icon)
 
             cardView.tag = pedidoItem.id
             name.text = pedidoItem.name
@@ -47,10 +49,24 @@ class PedidoAdapter (private val pedido : MutableList<PedidoItem>, val itemClick
             quantity.text = pedidoItem.quantity.toString()
             totalParcial.text = (pedidoItem.price as Double * pedidoItem.quantity).toString()
 
+            if(pedidoItem.state.equals("waiting")){
+                icon.setImageResource(R.drawable.ic_baseline_hourglass_empty_24);
+                return
+            }
+
+            // Change icon when confirmed
+            if(pedidoItem.state.equals("preparing")){
+                icon.setImageResource(R.drawable.ic_baseline_cached_24);
+                return
+            }
             // Fade item if is already delivered
             if(pedidoItem.state.equals("delivered")){
-               cardView.alpha= 0.5F
+                cardView.alpha= 0.5F
+                icon.setImageResource(R.drawable.ic_baseline_emoji_food_beverage_24);
+                return
             }
+
+
 
         }
     }

@@ -43,16 +43,6 @@ class FragmentTrois : Fragment(), View.OnClickListener {
 
         iconDelete=  ContextCompat.getDrawable(requireContext(), R.drawable.ic_delete)!!
 
-       /* menuViewModel.pedidoItems.observe(viewLifecycleOwner, Observer {
-            if (menuViewModel.pedidoItems.value != null) {
-                for ((k, v) in menuViewModel.pedidoItems.value!!) {
-                    var pedidoItem = PedidoItem(k.id, k.name, k.price, v, "delivered")
-                    listPedido.add(pedidoItem)
-                }
-                calculateTotalPedido()
-                fillPedido(root, listPedido)
-            }
-        })*/
         menuViewModel.contentOrder.observe(viewLifecycleOwner, Observer {
             if (menuViewModel.contentOrder.value != null) {
                 // Update total
@@ -62,7 +52,6 @@ class FragmentTrois : Fragment(), View.OnClickListener {
                 fillPedido(root, menuViewModel.contentOrder.value!!)
             }
         })
-
 
         menuViewModel.totalPedido.observe(viewLifecycleOwner, Observer {
             total.text = menuViewModel.totalPedido.value.toString()
@@ -75,6 +64,7 @@ class FragmentTrois : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         btn_confirm.setOnClickListener {
+            menuViewModel.contentOrder.value!!.filter { it.state.equals("pending") }.forEach { it.state = "waiting" }
             menuViewModel.saveOrder()
         }
     }
@@ -101,7 +91,7 @@ class FragmentTrois : Fragment(), View.OnClickListener {
         override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
             //Log.e("Swipe", listPedido.toString())
            // Log.e("Swipe", viewHolder.adapterPosition.toString())
-            if (menuViewModel.contentOrder.value!![viewHolder.adapterPosition].state.equals("delivered")){
+            if (!menuViewModel.contentOrder.value!![viewHolder.adapterPosition].state.equals("pending")){
                 return 0
             }
             return super.getMovementFlags(recyclerView, viewHolder)

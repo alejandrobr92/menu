@@ -1,5 +1,6 @@
 package alejandro.br.menu.activities
 
+import alejandro.br.menu.Database.DatabaseHandler
 import alejandro.br.menu.Models.MenuViewModel
 import alejandro.br.menu.R
 import android.os.Bundle
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var navController : NavController
     private lateinit var menuViewModel  : MenuViewModel
+    //lateinit var db: DatabaseHandler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +33,7 @@ class MainActivity : AppCompatActivity() {
        // menuViewModel.idRest= intent.getStringExtra("idRest")
         menuViewModel.idRest= "ORoDlpiidmmId2F60boJ"
         menuViewModel.initMenuViewModel(this)
+      //  db= DatabaseHandler(this)
 
         // Show notif
         /*menuViewModel.pedidoItems.observe(this, Observer {

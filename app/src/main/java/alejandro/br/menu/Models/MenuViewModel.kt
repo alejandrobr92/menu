@@ -13,7 +13,7 @@ class MenuViewModel : ViewModel() {
     var menuItems : MutableLiveData<List<MenuItem>> = MutableLiveData()
     //We observe contentOrder only
     var contentOrder: MutableLiveData<MutableList<PedidoItem>> = MutableLiveData()
-    var currentPartOfContent: MutableLiveData<Long> = MutableLiveData()
+    var currentContentPart: MutableLiveData<Long> = MutableLiveData()
     lateinit var currentOrderId: String
     var totalPedido = MutableLiveData<Double>()
     lateinit var db:DatabaseHandler
@@ -22,15 +22,15 @@ class MenuViewModel : ViewModel() {
 
 
     init {
-        currentPartOfContent.value = 0
+        currentContentPart.value = 0
         Log.e("MenuViewModel", "MenuViewModel created with idRest= $idRest")
     }
 
 
     fun initMenuViewModel(context: Context){
         getMenuItems(idRest)
-        createEmptyCurrentOrder(idRest)
         db = DatabaseHandler(context)
+        createEmptyCurrentOrder(idRest)
     }
 
     // Obtiene el menu
@@ -47,12 +47,13 @@ class MenuViewModel : ViewModel() {
     }
 
     fun createEmptyCurrentOrder(idRest: String){
+        Log.e("Counter Function", "una vez más")
         repository.createEmptyCurrentOrder(object:
             Repository.FirstOrderCalback{
             override fun onCallback(content: MutableList<PedidoItem>, orderId: String) {
                 contentOrder.value= content
                 currentOrderId = orderId
-                db.addCurrentOrderId(currentOrderId)
+               // db.addCurrentOrderId(currentOrderId)
             }
         }, idRest)
     }
@@ -60,7 +61,8 @@ class MenuViewModel : ViewModel() {
 
     fun saveOrder(){
         // TODO Check for ivalid orders
-        repository.saveOrder(idRest, contentOrder.value!!, currentOrderId,totalPedido.value!!)
+        currentContentPart.value = currentContentPart.value!! +1
+        repository.saveOrder(idRest, contentOrder.value!!, currentOrderId, totalPedido.value!!, currentContentPart.value!!)
     }
 
 }

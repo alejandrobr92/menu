@@ -12,10 +12,11 @@ data class Order(
    // val content: Array<Map<String, Int>>,
     @ServerTimestamp var time: Date?,
     var table: String?,
-    var total: Double
+    var total: Double,
+    var currentContentPart: Long
 
 )
 {
-    constructor() :  this( null, null , null, 0.0){
+    constructor() :  this( null, null , null, 0.0, 0){
     }
 }

@@ -53,7 +53,7 @@ class MenuItemAdapter (private val menu : List<MenuItem>, val addBtnClick : View
                 val name = item.get(0).name
                 val price = item.get(0).price
                 val quantity = counter.text.toString().toLong()
-                var pedidoItem = PedidoItem(view.tag as String, name, price, quantity, "waiting" ,menuViewModel.currentPartOfContent.value!!)
+                var pedidoItem = PedidoItem(view.tag as String, name, price, quantity, "pending" ,menuViewModel.currentContentPart.value!!)
                 Log.e("PedidoItem: ", pedidoItem.toString())
                 Log.e("Actual OrderContent", menuViewModel.contentOrder.value.toString())
 
@@ -61,9 +61,10 @@ class MenuItemAdapter (private val menu : List<MenuItem>, val addBtnClick : View
                 // Pour ce faire, la fonction prends le state seulement
                 if (menuViewModel.contentOrder.value != null) {
                     var filteredList = menuViewModel.contentOrder.value!!.filter {
-                            it -> it.id.equals(pedidoItem.id) && it.state.equals(pedidoItem.state)
+                            it.id.equals(pedidoItem.id) && it.state.equals(pedidoItem.state) && it.part==pedidoItem.part
                     }.toMutableList()
                     Log.e("FilteredList", filteredList.toString())
+
                     if(filteredList.size==1){
                         Log.e("IndexOf",menuViewModel.contentOrder.value!!.indexOf(filteredList[0]).toString())
                         menuViewModel.contentOrder.value!![menuViewModel.contentOrder.value!!.indexOf(filteredList[0])].quantity += pedidoItem.quantity
@@ -73,6 +74,7 @@ class MenuItemAdapter (private val menu : List<MenuItem>, val addBtnClick : View
                     }
 
                     }
+
             }
 
             incCountBtn.setOnClickListener{

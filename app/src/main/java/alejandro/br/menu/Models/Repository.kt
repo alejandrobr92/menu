@@ -61,7 +61,7 @@ class Repository(){
     // Creates the order to start observing
     fun createEmptyCurrentOrder(callback: FirstOrderCalback, idRest: String){
         val ref= firestore.collection("Restaurantes/$idRest/orders").document()
-        var preorder = Order(mutableListOf(), Date(), "2", 0.0)
+        var preorder = Order(mutableListOf(), Date(), "2", 0.0, 0)
         ref.set(preorder).addOnCompleteListener{
         Log.e("RefID", ref.id)
            getCurrentOrder(idRest, ref.id, callback)
@@ -139,10 +139,10 @@ class Repository(){
                 callback.onCallback(recommendations)
             }
     }
-    fun saveOrder(idRest: String, listPedido: MutableList<PedidoItem>, orderId: String,total: Double){
+    fun saveOrder(idRest: String, listPedido: MutableList<PedidoItem>, orderId: String,total: Double, currentContentPart:Long){
         // Creates a new order with and id
         var ref = firestore.document("Restaurantes/$idRest/orders/$orderId")
-        ref.update(mutableMapOf(Pair("content", listPedido), Pair("total",total)) as Map<String, Any>)
+        ref.update(mutableMapOf(Pair("content", listPedido), Pair("total",total), Pair("currentContentPart", currentContentPart)) as Map<String, Any>)
 
 
         //  var content = listPedido.mapKeys{ k -> k.key.id}
