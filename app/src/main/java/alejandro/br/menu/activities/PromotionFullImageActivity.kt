@@ -16,11 +16,13 @@ class PromotionFullImageActivity : AppCompatActivity() {
 
         val menuViewModel: MenuViewModel by viewModels()
 
-        val intent = intent
+   /*     val intent = intent
         var position = intent.extras.getInt("url")
         val adapter = PromotionsAdapter(this, menuViewModel.promotions.value!!)
         Picasso.get().load(adapter.promotions[position]).into(full_image_promotion)
 
+
+    */
 
     }
 }

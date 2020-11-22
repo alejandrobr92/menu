@@ -1,8 +1,8 @@
 package alejandro.br.menu.Models.Pokos
 
-data class PedidoItem(var id:String, var name: String, var price:  Double, var quantity: Long, var state: String){
-    constructor() : this ("", "", 0.0, 0, "")
-    constructor(name: String, price: Double, quantity: Long, state: String): this("", name, price, quantity, state)
+data class PedidoItem(var id:String, var name: String, var price:  Double, var quantity: Long, var state: String, var part: Long){
+    constructor() : this ("", "", 0.0, 0, "",0)
+    constructor(name: String, price: Double, quantity: Long, state: String): this("", name, price, quantity, state, 0)
 
 
 

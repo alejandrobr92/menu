@@ -112,7 +112,7 @@ class FragmentTrois : Fragment(), View.OnClickListener {
                     viewHolder.itemView.pedido_name.text.toString(),
                     viewHolder.itemView.pedido_price.text.toString().toDouble(),
                     viewHolder.itemView.pedido_quantity.text.toString().toLong(),
-                      "delivered")
+                      "delivered",0)
                 var menuItem = MenuItem(
                 viewHolder.itemView.pedido_card.tag.toString(),
                 viewHolder.itemView.pedido_name.text.toString(),

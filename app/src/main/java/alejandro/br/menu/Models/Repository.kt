@@ -87,9 +87,10 @@ class Repository(){
                         PedidoItem(
                             it["id"] as String,
                             it["name"] as String,
-                            it["price"] as Double ,
+                            it["price"].toString().toDouble()  ,
                             it["quantity"] as Long,
-                            it["state"] as String
+                            it["state"] as String,
+                            it["part"] as Long
                         )
                     }.forEach { list.add(it) }
 

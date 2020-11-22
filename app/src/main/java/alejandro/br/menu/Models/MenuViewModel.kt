@@ -11,12 +11,14 @@ class MenuViewModel : ViewModel() {
     var menuItems : MutableLiveData<List<MenuItem>> = MutableLiveData()
     //We observe contentOrder only
     var contentOrder: MutableLiveData<MutableList<PedidoItem>> = MutableLiveData()
+    var currentPartOfContent: MutableLiveData<Long> = MutableLiveData()
     lateinit var currentOrderId: String
     var totalPedido = MutableLiveData<Double>()
     private val repository = Repository()
 
 
     init {
+        currentPartOfContent.value = 0
         Log.e("MenuViewModel", "MenuViewModel created with idRest= $idRest")
     }
 

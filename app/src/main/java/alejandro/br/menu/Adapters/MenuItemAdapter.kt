@@ -53,11 +53,12 @@ class MenuItemAdapter (private val menu : List<MenuItem>, val addBtnClick : View
                 val name = item.get(0).name
                 val price = item.get(0).price
                 val quantity = counter.text.toString().toLong()
-                var pedidoItem = PedidoItem(view.tag as String, name, price, quantity, "pending")
+                var pedidoItem = PedidoItem(view.tag as String, name, price, quantity, "waiting" ,menuViewModel.currentPartOfContent.value!!)
                 Log.e("PedidoItem: ", pedidoItem.toString())
                 Log.e("Actual OrderContent", menuViewModel.contentOrder.value.toString())
 
-
+                // Decides whether to create a new card in Pedido or accumulate in the previous one
+                // Pour ce faire, la fonction prends le state seulement
                 if (menuViewModel.contentOrder.value != null) {
                     var filteredList = menuViewModel.contentOrder.value!!.filter {
                             it -> it.id.equals(pedidoItem.id) && it.state.equals(pedidoItem.state)

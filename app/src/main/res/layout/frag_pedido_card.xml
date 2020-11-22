@@ -24,7 +24,7 @@
             <TextView
                     android:id="@+id/pedido_name"
                     style="@style/pedido_item"
-                    android:layout_width="match_parent"
+                    android:layout_width="281dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="20dp"
@@ -33,18 +33,31 @@
 
             </TextView>
 
+            <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/ic_baseline_hourglass_empty_24">
+
+            </ImageView>
+
             <TextView
                     android:id="@+id/fisrt_sign_pesos"
+                    style="@style/pedido_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/pedido_name"
                     android:layout_marginTop="6dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="$"
-                    style="@style/pedido_item"
-                    android:layout_toLeftOf="@+id/pedido_price"
                     android:layout_marginEnd="5dp"
-                    android:layout_marginRight="5dp">
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_toLeftOf="@+id/pedido_price"
+                    android:text="$">
 
             </TextView>
 
@@ -93,16 +106,16 @@
 
             <TextView
                     android:id="@+id/second_sign_pesos"
+                    style="@style/pedido_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/pedido_name"
                     android:layout_marginTop="6dp"
-                    android:text="$"
-                    style="@style/pedido_item"
-                    android:layout_toLeftOf="@+id/pedido_total_parcial"
                     android:layout_marginEnd="5dp"
                     android:layout_marginRight="5dp"
-                    android:layout_marginBottom="8dp">
+                    android:layout_marginBottom="8dp"
+                    android:layout_toLeftOf="@+id/pedido_total_parcial"
+                    android:text="$">
 
             </TextView>
 
@@ -118,8 +131,7 @@
                     android:layout_marginTop="6dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginRight="62dp"
-                    android:layout_marginBottom="8dp"
-                    >
+                    android:layout_marginBottom="8dp">
 
             </TextView>
 
